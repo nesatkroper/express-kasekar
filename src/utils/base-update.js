@@ -4,20 +4,6 @@ const prisma = require("@/provider/client");
 const { modelSchemas } = require("./base-schema");
 const { convertData } = require("./convert-data");
 
-/**
- * @Updates a record with optional file upload handling
- * @param {string} model - Prisma model name
- * @param {string|number} id - Record ID to update
- * @param {object} data - Data to update
- * @param {object} [file] - Uploaded file object (e.g., from multer)
- * @param {string} [uploadPath] - Path to store uploaded files
- * @param {object} [options] - Configuration options
- * @param {string} [options.idField] - Custom ID field name
- * @param {string} [options.pictureField] - Custom picture field name
- * @param {boolean} [options.verbose] - Enable verbose logging
- * @returns {Promise<object>} Updated record
- * @throws {Error} If update fails
- */
 const baseUpdate = async (model, id, data, file, uploadPath, options = {}) => {
   // @Validate model exists
   if (!prisma[model]) {

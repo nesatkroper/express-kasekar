@@ -18,17 +18,3 @@ module.exports = function protectedStatic(dirPath, options = {}) {
     });
   };
 };
-
-// const express = require("express");
-
-// module.exports = function protectedStatic(dirPath, authMiddleware) {
-//   const staticHandler = express.static(dirPath);
-
-//   return function (req, res, next) {
-//     authMiddleware(req, res, (err) => {
-//       if (err) return next(err);
-
-//       staticHandler(req, res, next);
-//     });
-//   };
-// };

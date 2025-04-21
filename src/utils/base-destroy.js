@@ -1,16 +1,5 @@
 const prisma = require("@/provider/client");
 
-/**
- * @Deletes a record with transaction support and flexible ID field
- * @param {string} model - Prisma model name
- * @param {string|number} id - Record ID to delete
- * @param {object} [options] - Configuration options
- * @param {string} [options.idField] - Custom ID field name (defaults to `${model}Id`)
- * @param {boolean} [options.softDelete] - Whether to perform soft delete if supported
- * @param {boolean} [options.verbose] - Whether to log operation details
- * @returns {Promise<object>} Deleted record
- * @throws {Error} If deletion fails
- */
 const baseDestroy = async (model, id, options = {}) => {
   // @Validate model exists
   if (!prisma[model]) {

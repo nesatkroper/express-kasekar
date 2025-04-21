@@ -1,10 +1,3 @@
-/**
- * @Converts raw data to match Prisma schema types
- * @param {object} data - Input data
- * @param {object} modelSchema - Schema definition
- * @returns {object} Converted data
- */
-
 const convertData = (data, modelSchema) => {
   try {
     const convertedData = {};

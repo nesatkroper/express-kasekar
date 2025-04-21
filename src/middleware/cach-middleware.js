@@ -3,11 +3,6 @@ const redisClient = redis.createClient({ url: process.env.REDIS_URL });
 redisClient.on("error", (err) => console.log("Redis Error:", err));
 redisClient.connect().then(() => console.log("Redis connected"));
 
-/**
- * Middleware function to cache responses for a specified time-to-live (TTL) duration.
- * @param {number} [ttl=3600] - Time-to-live duration in seconds for caching the response.
- * @returns {Function} Express middleware function that caches responses and serves cached data if available.
- */
 module.exports = (ttl = 3600) => {
   return async (req, res, next) => {
     const cacheKey = `cache:${req.originalUrl}`;

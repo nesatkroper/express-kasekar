@@ -1,11 +1,3 @@
-/**
- * Error handling middleware function that logs the error stack and sends an appropriate response based on the error type.
- * @param {Error} err - The error object
- * @param {Object} req - The request object
- * @param {Object} res - The response object
- * @param {Function} next - The next middleware function
- * @returns None
- */
 module.exports = (err, req, res, next) => {
   console.error(err.stack);
 

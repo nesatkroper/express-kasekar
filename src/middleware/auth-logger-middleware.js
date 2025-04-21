@@ -1,17 +1,6 @@
 const prisma = require("@/provider/client");
 const morgan = require("morgan");
 
-/**
- * Logs information to a database asynchronously.
- * @param {string} authId - The authentication ID of the user.
- * @param {string} method - The HTTP method used for the request.
- * @param {string} url - The URL of the request.
- * @param {number} status - The HTTP status code of the response.
- * @param {number} responseTime - The response time in milliseconds.
- * @param {string} ip - The IP address of the user.
- * @param {string} userAgent - The user agent string of the client.
- * @returns None
- */
 const logToDB = async (
   authId,
   method,

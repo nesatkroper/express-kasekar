@@ -1,18 +1,5 @@
 const prisma = require("@/provider/client");
 
-/**
- * @Updates a record's status with transaction support
- * @param {string} model - Prisma model name
- * @param {string|number} id - Record ID to update
- * @param {string} action - Action to perform ('remove' or 'restore')
- * @param {object} [options] - Configuration options
- * @param {string} [options.idField] - Custom ID field name (defaults to `${model}Id`)
- * @param {string} [options.statusField] - Custom status field name (defaults to 'status')
- * @param {object} [options.additionalData] - Additional fields to update
- * @param {boolean} [options.verbose] - Whether to log operation details
- * @returns {Promise<object>} Updated record
- * @throws {Error} If update fails
- */
 const basePatch = async (model, id, action, options = {}) => {
   if (!action) {
     throw new Error("Action parameter is required. Use 'remove' or 'restore'.");

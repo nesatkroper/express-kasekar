@@ -1,13 +1,6 @@
 const jwt = require("jsonwebtoken");
 const prisma = require("@/provider/client");
 
-/**
- * Middleware function to handle authentication using JWT token.
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @param {Function} next - The next middleware function in the stack.
- * @returns None
- */
 module.exports = async (req, res, next) => {
   try {
     const token = req.header("Authorization")?.split(" ")[1];

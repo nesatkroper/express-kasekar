@@ -2,19 +2,6 @@ const prisma = require("@/provider/client");
 const { modelSchemas } = require("./base-schema");
 const { convertData } = require("./convert-data");
 
-/**
- * @Creates a new record with transaction support and optional auto-generated code
- * @param {string} model - Prisma model name
- * @param {object} data - Data to create
- * @param {object} [options] - Configuration options
- * @param {string} [options.field] - Field to store generated code
- * @param {string} [options.idField] - Field to use for numeric portion
- * @param {string} [options.prefix] - Code prefix
- * @param {number} [pad=4] - Zero padding length
- * @param {boolean} [verbose=false] - Whether to log results
- * @returns {Promise<object>} Created/updated record
- */
-
 const baseCreate = async (
   model,
   data,
@@ -49,7 +36,6 @@ const baseCreate = async (
         );
       }
 
-      // @Generate secure code
       const safePrefix = options.prefix
         .replace(/[^a-zA-Z0-9]/g, "")
         .toUpperCase();
