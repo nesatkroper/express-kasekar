@@ -1,9 +1,5 @@
-const {
-  create: msgCreate,
-} = require("@/controllers/realtime/groupmessage-controller");
-const {
-  create: ntfCreate,
-} = require("@/controllers/realtime/notification-controller");
+const { create: msgCreate } = require("@/controllers/groupmessage-controller");
+const { create: ntfCreate } = require("@/controllers/notification-controller");
 const { createAdapter } = require("@socket.io/redis-adapter");
 const { redisClient } = require("@/middleware/redis-middleware");
 
