@@ -32,13 +32,6 @@ morgan.token(
   (req, res) => res.get("X-Response-Time") || "0"
 );
 
-/**
- * Middleware function that logs HTTP request details using Morgan logger.
- * @param {Object} tokens - Object containing functions to extract request details.
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @returns null
- */
 module.exports = morgan((tokens, req, res) => {
   const method = tokens.method(req, res);
   const url = tokens.url(req, res);

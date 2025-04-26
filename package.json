@@ -21,6 +21,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.4.1",
     "@socket.io/redis-adapter": "^8.3.0",
     "axios": "^1.7.9",
     "bakong-khqr": "^1.0.7",

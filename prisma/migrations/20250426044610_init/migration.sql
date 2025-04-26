@@ -17,6 +17,24 @@ CREATE TYPE "PaymentMethod" AS ENUM ('cash', 'creditCard', 'khqr', 'leave');
 CREATE TYPE "Status" AS ENUM ('active', 'inactive');
 
 -- CreateTable
+CREATE TABLE "Address" (
+    "addressId" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "cityId" UUID NOT NULL,
+    "stateId" UUID NOT NULL,
+    "country" TEXT,
+    "location" TEXT,
+    "latitude" DOUBLE PRECISION,
+    "longitude" DOUBLE PRECISION,
+    "customerId" UUID,
+    "employeeId" UUID,
+    "status" "Status" NOT NULL DEFAULT 'active',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Address_pkey" PRIMARY KEY ("addressId")
+);
+
+-- CreateTable
 CREATE TABLE "Attendance" (
     "attendanceId" UUID NOT NULL DEFAULT gen_random_uuid(),
     "employeeId" UUID NOT NULL,
@@ -109,18 +127,28 @@ CREATE TABLE "Customer" (
     "customerId" UUID NOT NULL DEFAULT gen_random_uuid(),
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
-    "picture" TEXT,
     "gender" "Gender" NOT NULL DEFAULT 'male',
-    "email" TEXT,
     "phone" TEXT,
-    "address" TEXT,
-    "cityId" UUID NOT NULL,
-    "stateId" UUID NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'active',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Customer_pkey" PRIMARY KEY ("customerId")
+);
+
+-- CreateTable
+CREATE TABLE "Customerinfo" (
+    "customerinfoId" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "customerId" UUID NOT NULL,
+    "picture" TEXT,
+    "region" TEXT,
+    "email" TEXT,
+    "address" TEXT,
+    "country" TEXT,
+    "note" TEXT,
+    "status" "Status" NOT NULL DEFAULT 'active',
+
+    CONSTRAINT "Customerinfo_pkey" PRIMARY KEY ("customerinfoId")
 );
 
 -- CreateTable
@@ -163,14 +191,23 @@ CREATE TABLE "Employeeinfo" (
     "picture" TEXT,
     "region" TEXT,
     "email" TEXT,
-    "address" TEXT,
-    "cityId" UUID NOT NULL,
-    "stateId" UUID NOT NULL,
-    "country" TEXT,
     "note" TEXT,
     "status" "Status" NOT NULL DEFAULT 'active',
 
     CONSTRAINT "Employeeinfo_pkey" PRIMARY KEY ("employeeinfoId")
+);
+
+-- CreateTable
+CREATE TABLE "ImageAddress" (
+    "imageId" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "imageUrl" TEXT NOT NULL,
+    "imageType" TEXT,
+    "addressId" UUID NOT NULL,
+    "status" "Status" NOT NULL DEFAULT 'active',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ImageAddress_pkey" PRIMARY KEY ("imageId")
 );
 
 -- CreateTable
@@ -358,6 +395,12 @@ CREATE TABLE "User" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Address_customerId_key" ON "Address"("customerId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Address_employeeId_key" ON "Address"("employeeId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Auth_email_key" ON "Auth"("email");
 
 -- CreateIndex
@@ -370,7 +413,10 @@ CREATE INDEX "Auth_email_idx" ON "Auth"("email");
 CREATE UNIQUE INDEX "City_name_stateId_key" ON "City"("name", "stateId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Customer_email_key" ON "Customer"("email");
+CREATE UNIQUE INDEX "Customerinfo_customerId_key" ON "Customerinfo"("customerId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Customerinfo_email_key" ON "Customerinfo"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Employee_employeeCode_key" ON "Employee"("employeeCode");
@@ -409,6 +455,18 @@ CREATE UNIQUE INDEX "User_customerId_key" ON "User"("customerId");
 CREATE INDEX "User_email_idx" ON "User"("email");
 
 -- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("cityId") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("customerId") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("employeeId") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Attendance" ADD CONSTRAINT "Attendance_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -436,10 +494,7 @@ ALTER TABLE "Cartnote" ADD CONSTRAINT "Cartnote_cartId_fkey" FOREIGN KEY ("cartI
 ALTER TABLE "City" ADD CONSTRAINT "City_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Customer" ADD CONSTRAINT "Customer_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Customer" ADD CONSTRAINT "Customer_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("cityId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Customerinfo" ADD CONSTRAINT "Customerinfo_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("customerId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Employee" ADD CONSTRAINT "Employee_positionId_fkey" FOREIGN KEY ("positionId") REFERENCES "Position"("positionId") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -451,10 +506,7 @@ ALTER TABLE "Employee" ADD CONSTRAINT "Employee_departmentId_fkey" FOREIGN KEY (
 ALTER TABLE "Employeeinfo" ADD CONSTRAINT "Employeeinfo_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Employeeinfo" ADD CONSTRAINT "Employeeinfo_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Employeeinfo" ADD CONSTRAINT "Employeeinfo_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("cityId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ImageAddress" ADD CONSTRAINT "ImageAddress_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "Address"("addressId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Notification" ADD CONSTRAINT "Notification_authId_fkey" FOREIGN KEY ("authId") REFERENCES "Auth"("authId") ON DELETE SET NULL ON UPDATE CASCADE;

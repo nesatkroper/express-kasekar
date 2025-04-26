@@ -7,9 +7,11 @@ const {
   update,
   patch,
   destroy,
+  refresh,
 } = require("@/controllers/department-controller");
 
 router.get("/:id?", select);
+router.get("/refresh", refresh);
 router.post("/", create);
 router.put("/:id", update);
 router.patch("/:id", patch);

@@ -23,13 +23,6 @@ morgan.token(
   (req, res) => res.get("X-Response-Time") || "0"
 );
 
-/**
- * Middleware function that logs request data to a database using the morgan library.
- * @param {Object} tokens - Object containing functions to extract data from request and response objects.
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @returns null
- */
 module.exports = morgan((tokens, req, res) => {
   const logData = {
     method: tokens.method(req, res),

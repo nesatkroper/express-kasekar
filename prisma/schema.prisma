@@ -35,7 +35,26 @@ enum Status {
   active 
   inactive 
 }
+model Address {
+  addressId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  cityId String @db.Uuid
+  stateId String @db.Uuid
+  country String?
+  location String?
+  latitude Float?
+  longitude Float?
+  customerId String?  @unique  @db.Uuid
+  employeeId String?  @unique  @db.Uuid
+  status Status @default(active)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  image ImageAddress[]
+  city City @relation(fields: [cityId], references: [cityId])
+  state State @relation(fields: [stateId], references: [stateId])
+  customer Customer?  @relation(fields: [customerId], references: [customerId])
+  employee Employee?  @relation(fields: [employeeId], references: [employeeId])
+}
 model Attendance {
   attendanceId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid
@@ -44,7 +63,6 @@ model Attendance {
   status Status @default(active)
   employee Employee @relation(fields: [employeeId], references: [employeeId])
 }
-
 model Auth {
   authId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email String @unique @db.VarChar(255)
@@ -63,7 +81,6 @@ model Auth {
   employee Employee? @relation(fields: [employeeId], references: [employeeId])
   @@index([email])
 }
-
 model AuthLog {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId String @db.Uuid
@@ -78,8 +95,6 @@ model AuthLog {
 
   auth Auth @relation(fields: [authId], references: [authId])
 }
-
-
 model Cart {
   cartId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId String? @db.Uuid
@@ -95,7 +110,6 @@ model Cart {
   user User? @relation(fields: [userId], references: [userId])
   note Cartnote[]
 }
-
 model Cartnote {
   cartnoteId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   cartId String @db.Uuid
@@ -104,7 +118,6 @@ model Cartnote {
 
   cart Cart @relation(fields: [cartId], references: [cartId])
 }
-
 model Category {
   categoryId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   picture String?
@@ -117,39 +130,43 @@ model Category {
 
   products Product[]
 }
-
 model City {
   cityId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   stateId String @db.Uuid
   name String
 
   @@unique([name, stateId])
+  addresses Address[]
   state State @relation(fields: [stateId], references: [stateId])
-  employees Employeeinfo[]
-  customers Customer[]
 }
-
 model Customer {
   customerId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   firstName String
   lastName String
-  picture String?
   gender Gender @default(male)
-  email String? @unique
   phone String?
-  address String?
-  cityId String @db.Uuid
-  stateId String @db.Uuid
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  state State @relation(fields: [stateId], references: [stateId])
-  city City @relation(fields: [cityId], references: [cityId])
-  user User?
   sales Sale[]
+  user User?
+  info Customerinfo?
+  address Address[]
 }
+model Customerinfo{
+  customerinfoId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  customerId String @db.Uuid @unique
+  picture String?
+  region String?
+  email String? @unique
+  address String?
+  country String?
+  note String?
+  status Status @default(active)
 
+  customer Customer @relation(fields: [customerId], references: [customerId])
+}
 model Department {
   departmentId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   departmentName String
@@ -162,7 +179,6 @@ model Department {
   positions Position[]
   employees Employee[]
 }
-
 model Employee {
   employeeId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeCode String? @unique
@@ -181,31 +197,35 @@ model Employee {
 
   auth Auth?
   info Employeeinfo?
-  position Position? @relation(fields: [positionId], references: [positionId])
-  department Department? @relation(fields: [departmentId], references: [departmentId])
+  address Address[]
   sales Sale[]
   attendances Attendance[]
   payment Payment[]
+  position Position? @relation(fields: [positionId], references: [positionId])
+  department Department? @relation(fields: [departmentId], references: [departmentId])
 }
-
 model Employeeinfo {
   employeeinfoId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid @unique
   picture String?
   region String?
   email String? @unique
-  address String?
-  cityId String @db.Uuid
-  stateId String @db.Uuid
-  country String?
   note String?
   status Status @default(active)
 
   employee Employee @relation(fields: [employeeId], references: [employeeId])
-  state State @relation(fields: [stateId], references: [stateId])
-  city City @relation(fields: [cityId], references: [cityId])
 }
+model ImageAddress {
+  imageId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  imageUrl String
+  imageType String?
+  addressId String @db.Uuid
+  status Status @default(active)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  address Address @relation(fields: [addressId], references: [addressId])
+}
 model Log {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   method String
@@ -217,7 +237,6 @@ model Log {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
 model Notification {
   notificationId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId String? @db.Uuid
@@ -231,7 +250,6 @@ model Notification {
   auth Auth? @relation(fields: [authId], references: [authId])
   user User? @relation(fields: [userId], references: [userId])
 }
-
 model Payment {
   paymentId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid
@@ -251,7 +269,6 @@ model Payment {
   sale Sale? @relation(fields: [saleId], references: [saleId])
   employee Employee @relation(fields: [employeeId], references: [employeeId])
 }
-
 model Position {
   positionId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   departmentId String @db.Uuid
@@ -264,7 +281,6 @@ model Position {
   department Department @relation(fields: [departmentId], references: [departmentId])
   employees Employee[]
 }
-
 model Product {
   productId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   productName String
@@ -281,7 +297,6 @@ model Product {
   saledetails Saledetail[]
   cart Cart[]
 }
-
 model Productstock {
   productstockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   productId String @db.Uuid
@@ -297,7 +312,6 @@ model Productstock {
   product Product? @relation(fields: [productId], references: [productId])
   supplier Supplier? @relation(fields: [supplierId], references: [supplierId])
 }
-
 model Role {
   roleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name String @unique
@@ -305,7 +319,6 @@ model Role {
 
   auths Auth[]
 }
-
 model Sale {
   saleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid
@@ -322,7 +335,6 @@ model Sale {
   saledetails Saledetail[]
   payment Payment[]
 }
-
 model Saledetail {
   saledetailId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   saleId String @db.Uuid
@@ -336,15 +348,13 @@ model Saledetail {
   sale Sale @relation(fields: [saleId], references: [saleId])
   product Product @relation(fields: [productId], references: [productId])
 }
-
 model State {
   stateId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name String @unique
   cities City[]
-  employees Employeeinfo[]
-  customers Customer[]
-}
 
+  addresses Address[]
+}
 model Supplier {
   supplierId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   supplierName String
@@ -357,7 +367,6 @@ model Supplier {
   updatedAt DateTime @updatedAt
   stocks Productstock[]
 }
-
 model Token {
   tokenId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId String? @db.Uuid
@@ -372,7 +381,6 @@ model Token {
   @@index([token])
   @@index([expiresAt])
 }
-
 model User {
   userId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email String @unique @db.VarChar(255)
