@@ -10,7 +10,11 @@ const {
 const model = "position";
 const field = "positionCode";
 const prefix = "POS";
-const pad = 4;
+
+const refresh = async (req, res) => {
+  await invalidate(`${model}:*`);
+  return res.status(203).json({ msg: "Cache invalidated" });
+};
 
 const select = async (req, res) => {
   try {
@@ -21,9 +25,9 @@ const select = async (req, res) => {
       "createdAt"
     );
 
-    if (!result || (Array.isArray(result) && !result.length)) {
+    if (!result || (Array.isArray(result) && !result.length))
       return res.status(404).json({ msg: "No data found" });
-    }
+
     return res.status(200).json(result);
   } catch (err) {
     console.error("Error:", err);
@@ -35,18 +39,13 @@ const create = async (req, res) => {
   try {
     const data = { ...req.body };
 
-    const result = await baseCreate(
-      model,
-      data,
-      {
-        field,
-        prefix,
-        idField: `${model}Id`,
-      },
-      pad
-    );
+    const result = await baseCreate(model, data, {
+      field,
+      prefix,
+      idField: `${model}Id`,
+    });
 
-    await invalidate("position:*");
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     console.error(`Error creating ${model}:`, err);
@@ -58,6 +57,7 @@ const update = async (req, res) => {
   try {
     const result = await baseUpdate(model, req.params.id, req.body);
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -68,6 +68,7 @@ const patch = async (req, res) => {
   try {
     const result = await basePatch(model, req.params.id, req.query.type);
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error :${err}` });
@@ -77,6 +78,8 @@ const patch = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const result = await baseDestroy(model, req.params.id);
+
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -89,4 +92,5 @@ module.exports = {
   update,
   patch,
   destroy,
+  refresh,
 };
