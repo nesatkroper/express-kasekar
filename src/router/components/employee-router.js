@@ -10,6 +10,7 @@ const {
   update,
   patch,
   destroy,
+  refresh,
 } = require("@/controllers/employee-controller");
 
 const {
@@ -17,6 +18,7 @@ const {
   updateInfo,
 } = require("@/controllers/employeeinfo-controller");
 
+router.get("/re", refresh);
 router.get("/:id?", select);
 router.post("/", create);
 router.put("/:id", update);

@@ -1,4 +1,5 @@
 const path = require("path");
+const { invalidate } = require("@/utils/base-redis");
 const { uploadPath } = require("@/provider/upload-path");
 
 const {
@@ -11,18 +12,23 @@ const {
 
 const model = "customer";
 
+const refresh = async (req, res) => {
+  await invalidate(`${model}:*`);
+  return res.status(203).json({ msg: "Cache invalidated" });
+};
+
 const select = async (req, res) => {
   try {
     const result = await baseSelect(
       model,
       req.params.id,
       req.query,
-      `${model}Id`
+      "createdAt"
     );
 
-    if (!result || (Array.isArray(result) && !result.length)) {
+    if (!result || (Array.isArray(result) && !result.length))
       return res.status(404).json({ msg: "No data found" });
-    }
+
     return res.status(200).json(result);
   } catch (err) {
     console.error("Error:", err);
@@ -31,41 +37,23 @@ const select = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  let picture;
   try {
-    picture = req.file ? path.basename(req.file.path) : null;
-    const data = { ...req.body, picture };
+    const data = { ...req.body };
 
     const result = await baseCreate(model, data);
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     console.log(`Error creating ${model}:`, err);
-
-    if (picture) {
-      const filePath = path.join(
-        __dirname,
-        "../../../public/uploads/customer",
-        picture
-      );
-      fs.unlink(filePath, (unlinkErr) => {
-        if (unlinkErr) console.error("Failed to delete file:", unlinkErr);
-      });
-    }
-
     return res.status(500).json({ error: `Error :${err}` });
   }
 };
 
 const update = async (req, res) => {
   try {
-    const result = await baseUpdate(
-      model,
-      req.params.id,
-      req.body,
-      req.file,
-      uploadPath
-    );
+    const result = await baseUpdate(model, req.params.id, req.body);
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -76,6 +64,7 @@ const patch = async (req, res) => {
   try {
     const result = await basePatch(model, req.params.id, req.query.type);
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error :${err}` });
@@ -85,6 +74,8 @@ const patch = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const result = await baseDestroy(model, req.params.id);
+
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -97,4 +88,5 @@ module.exports = {
   update,
   patch,
   destroy,
+  refresh,
 };

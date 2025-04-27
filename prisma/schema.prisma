@@ -37,8 +37,8 @@ enum Status {
 }
 model Address {
   addressId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  cityId String @db.Uuid
-  stateId String @db.Uuid
+  cityId Int
+  stateId Int
   country String?
   location String?
   latitude Float?
@@ -82,7 +82,7 @@ model Auth {
   @@index([email])
 }
 model AuthLog {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id  Int     @id @default(autoincrement())
   authId String @db.Uuid
   method String
   url String
@@ -131,8 +131,8 @@ model Category {
   products Product[]
 }
 model City {
-  cityId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  stateId String @db.Uuid
+  cityId  Int     @id @default(autoincrement())
+  stateId Int
   name String
 
   @@unique([name, stateId])
@@ -227,7 +227,7 @@ model ImageAddress {
   address Address @relation(fields: [addressId], references: [addressId])
 }
 model Log {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id  Int     @id @default(autoincrement())
   method String
   url String
   status Int
@@ -349,7 +349,7 @@ model Saledetail {
   product Product @relation(fields: [productId], references: [productId])
 }
 model State {
-  stateId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stateId  Int     @id @default(autoincrement())
   name String @unique
   cities City[]
 

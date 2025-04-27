@@ -58,11 +58,8 @@ app.use((err, req, res, next) => {
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
+      if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+      else callback(new Error("Not allowed by CORS"));
     },
     methods,
     allowedHeaders,
@@ -74,18 +71,17 @@ app.use(
   "/uploads",
   protectedStatic(path.join(__dirname, "public/uploads"), {
     requireAuth: false,
+    defaultImage: "default.png",
   })
 );
+
 app.use("/v1", router);
 
 const io = new Server(server, {
   cors: {
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by Socket"));
-      }
+      if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+      else callback(new Error("Not allowed by Socket"));
     },
     methods: ["GET", "POST"],
     credentials: true,

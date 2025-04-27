@@ -26,8 +26,10 @@ const modelSchemas = {
   cart: {
     cartId: "String",
     authId: "String",
+    userId: "String",
     productId: "String",
     quantity: "Int",
+    status: "String",
   },
   cartNote: {
     noteId: "String",
@@ -46,13 +48,8 @@ const modelSchemas = {
     customerId: "String",
     firstName: "String",
     lastName: "String",
-    picture: "String",
     gender: "String",
-    email: "String",
     phone: "String",
-    address: "String",
-    cityId: "String",
-    stateId: "String",
     status: "String",
   },
   department: {

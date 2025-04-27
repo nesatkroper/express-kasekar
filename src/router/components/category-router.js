@@ -8,8 +8,10 @@ const {
   update,
   patch,
   destroy,
+  refresh,
 } = require("@/controllers/category-controller");
 
+router.get("/re", refresh);
 router.get("/:id?", select);
 router.post("/", upload.single("picture"), create);
 router.put("/:id", update);

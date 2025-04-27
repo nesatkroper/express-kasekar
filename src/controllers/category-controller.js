@@ -13,6 +13,11 @@ const model = "category";
 const field = "categoryCode";
 const prefix = "CAT";
 
+const refresh = async (req, res) => {
+  await invalidate(`${model}:*`);
+  return res.status(203).json({ msg: "Cache invalidated" });
+};
+
 const select = async (req, res) => {
   try {
     const result = await baseSelect(
@@ -42,7 +47,7 @@ const create = async (req, res) => {
       prefix,
       idField: `${model}Id`,
     });
-    await invalidate("category:*");
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     console.error(`Error creating ${model}:`, err);
@@ -60,6 +65,7 @@ const update = async (req, res) => {
       uploadPath
     );
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -70,6 +76,7 @@ const patch = async (req, res) => {
   try {
     const result = await basePatch(model, req.params.id, req.query.type);
 
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error :${err}` });
@@ -79,6 +86,8 @@ const patch = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const result = await baseDestroy(model, req.params.id);
+
+    await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: `Error: ${err.message}` });
@@ -91,4 +100,5 @@ module.exports = {
   update,
   patch,
   destroy,
+  refresh,
 };
