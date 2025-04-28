@@ -9,6 +9,7 @@ const {
   basePatch,
   baseDestroy,
 } = require("../utils");
+const prisma = require("@/provider/client");
 
 const model = "customer";
 
@@ -82,11 +83,83 @@ const destroy = async (req, res) => {
   }
 };
 
+const selectinfo = async (req, res) => {
+  try {
+    const customerExists = await prisma[model].findUnique({
+      where: { customerId: req.params.id },
+    });
+
+    if (!customerExists) {
+      return res.status(404).json({
+        msg: "Customer not found",
+        id: req.params.id,
+      });
+    }
+
+    const result = await prisma[`${model}info`].findUnique({
+      where: {
+        customerId: req.params.id,
+      },
+    });
+
+    if (!result)
+      return res.status(404).json({
+        msg: "customerinfo not found (but customer exists)",
+        customerExists: true,
+      });
+    return res.status(200).json({ data: result });
+  } catch (err) {
+    console.error("Error:", err);
+    return res.status(500).json({
+      error: err.message,
+      details: {
+        model: "Customerinfo",
+        searchedId: req.params.id,
+        searchedField: "customerId",
+      },
+    });
+  }
+};
+
+const createinfo = async (req, res) => {
+  try {
+    const picture = req.file ? path.basename(req.file.path) : null;
+    const data = { ...req.body, picture };
+
+    const result = await baseCreate(`${model}info`, data);
+    await invalidate(`${model}info:*`);
+    return res.status(201).json(result);
+  } catch (err) {
+    console.log(`Error creating ${model}:`, err);
+    return res.status(500).json({ error: `Error :${err}` });
+  }
+};
+
+const updateinfo = async (req, res) => {
+  try {
+    const result = await baseUpdate(
+      model,
+      req.params.id,
+      req.body,
+      req.file,
+      uploadPath
+    );
+
+    await invalidate(`${model}info:*`);
+    return res.status(201).json(result);
+  } catch (err) {
+    return res.status(500).json({ error: `Error: ${err.message}` });
+  }
+};
+
 module.exports = {
+  refresh,
   select,
   create,
   update,
   patch,
   destroy,
-  refresh,
+  selectinfo,
+  createinfo,
+  updateinfo,
 };

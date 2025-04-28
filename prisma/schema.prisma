@@ -148,14 +148,12 @@ model Customer {
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   sales Sale[]
   user User?
   info Customerinfo?
   address Address[]
 }
 model Customerinfo{
-  customerinfoId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   customerId String @db.Uuid @unique
   picture String?
   region String?
@@ -164,7 +162,6 @@ model Customerinfo{
   country String?
   note String?
   status Status @default(active)
-
   customer Customer @relation(fields: [customerId], references: [customerId])
 }
 model Department {
@@ -205,7 +202,6 @@ model Employee {
   department Department? @relation(fields: [departmentId], references: [departmentId])
 }
 model Employeeinfo {
-  employeeinfoId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid @unique
   picture String?
   region String?

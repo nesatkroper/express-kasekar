@@ -89,6 +89,7 @@ const baseSelect = async (
     if (id) {
       const selectData = await tx[model].findUnique({
         where: whereCondition,
+        // where: id && !isMod ? { [`${model}Id`]: id } : { [modName]: id },
         select: Object.keys(finalSelect).length ? finalSelect : undefined,
         include: Object.keys(finalInclude).length ? finalInclude : undefined,
       });
