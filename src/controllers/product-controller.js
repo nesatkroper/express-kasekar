@@ -16,7 +16,7 @@ const prefix = "PRO";
 
 const refresh = async (req, res) => {
   await invalidate(`${model}:*`);
-  return res.status(203).json({ msg: "Cache invalidated" });
+  return res.status(201).json({ msg: "Cache invalidated" });
 };
 
 const select = async (req, res) => {

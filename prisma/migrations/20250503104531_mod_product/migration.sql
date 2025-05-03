@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "desc" TEXT,
+ALTER COLUMN "capacity" DROP NOT NULL,
+ALTER COLUMN "capacity" DROP DEFAULT,
+ALTER COLUMN "capacity" SET DATA TYPE TEXT;

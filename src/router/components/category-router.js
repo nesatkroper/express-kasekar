@@ -14,7 +14,7 @@ const {
 router.get("/re", refresh);
 router.get("/:id?", select);
 router.post("/", upload.single("picture"), create);
-router.put("/:id", update);
+router.put("/:id", upload.single("picture"), update);
 router.patch("/:id", patch);
 router.delete("/:id", destroy);
 
