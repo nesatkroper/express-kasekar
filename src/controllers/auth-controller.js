@@ -1,3 +1,4 @@
+const { data } = require("@/middleware/app-logger-middleware");
 const prismaClient = require("@/provider/client");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -68,7 +69,10 @@ const register = async (req, res) => {
         roleId: authRole.roleId,
         employeeId: parseInt(employeeId, 10),
       },
-      include: { role: true },
+      include: {
+        role: true,
+        employee: true,
+      },
     });
 
     const token = await generateToken(newAuth, req);
@@ -97,7 +101,10 @@ const login = async (req, res) => {
 
     const auth = await prismaClient.auth.findUnique({
       where: { email },
-      include: { role: true, employee: true },
+      include: {
+        role: true,
+        employee: true,
+      },
     });
 
     if (!auth) return res.status(404).json({ error: "auth not found" });
@@ -140,6 +147,19 @@ const logout = async (req, res) => {
   }
 };
 
+const editRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { roleId } = req.body;
+    const result = await prismaClient.auth.update({
+      where: { authId: id },
+      data: {
+        role: roleId,
+      },
+    });
+  } catch (error) {}
+};
+
 const getAllAuth = async (req, res) => {
   try {
     const auths = await prismaClient.auth.findMany({
@@ -156,7 +176,10 @@ const getAuth = async (req, res) => {
   try {
     const auth = await prismaClient.auth.findUnique({
       where: { authId: req.auth.authId },
-      include: { role: true, employee: true },
+      include: {
+        role: true,
+        employee: true,
+      },
     });
 
     if (!auth) return res.status(404).json({ error: "auth not found" });

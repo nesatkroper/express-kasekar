@@ -1,38 +1,13 @@
 const ROLE = [
   {
     name: "admin",
+    description: "Full system administrator",
+    isSystemRole: true,
   },
-  {
-    name: "client",
-  },
-  {
-    name: "management",
-  },
-  {
-    name: "accountant",
-  },
-  {
-    name: "sale",
-  },
-];
-
-const ROOMTYPE = [
-  {
-    name: "Single Room",
-    code: "TYPE-001",
-  },
-  {
-    name: "Double Room",
-    code: "TYPE-002",
-  },
-  {
-    name: "Luxary Room",
-    code: "TYPE-003",
-  },
-  {
-    name: "Suite Room",
-    code: "TYPE-004",
-  },
+  { name: "client", description: "Regular client user" },
+  { name: "management", description: "Management team member" },
+  { name: "accountant", description: "Accounting department" },
+  { name: "sale", description: "Sales team member" },
 ];
 
 const STATE = [
@@ -937,7 +912,6 @@ const CITY = [
 ];
 
 module.exports = {
-  ROOMTYPE,
   ROLE,
   STATE,
   CITY,

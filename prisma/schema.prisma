@@ -1,20 +1,19 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
   previewFeatures = ["postgresqlExtensions"]
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   extensions = [pgcrypto]
 }
-
 enum AccountStatus { 
   active
-  dormant
-  suspended 
+  inactive
+  suspended
+  pending 
 }
-
 enum Gender { 
   male 
   female 
@@ -72,6 +71,7 @@ model Auth {
   status AccountStatus @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  lastLoginAt DateTime?
 
   token Token[]
   cart Cart[]
@@ -79,7 +79,10 @@ model Auth {
   notification Notification[]
   role Role? @relation(fields: [roleId], references: [roleId])
   employee Employee? @relation(fields: [employeeId], references: [employeeId])
+
   @@index([email])
+  @@index([status])
+  @@index([createdAt])
 }
 model AuthLog {
   id  Int     @id @default(autoincrement())
@@ -146,7 +149,7 @@ model Customer {
   gender Gender @default(male)
   phone String?
   status Status @default(active)
-  employeeId String  @db.Uuid  
+  employeeId String?  @db.Uuid  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -154,7 +157,7 @@ model Customer {
   user User?
   info Customerinfo?
   address Address[]
-  employee Employee  @relation(fields: [employeeId], references: [employeeId])
+  employee Employee?  @relation(fields: [employeeId], references: [employeeId])
 }
 model Customerinfo{
   customerId String @db.Uuid @unique
@@ -226,7 +229,6 @@ model ImageAddress {
 
   address Address @relation(fields: [addressId], references: [addressId])
 }
-
 model Log {
   id  Int     @id @default(autoincrement())
   method String
@@ -321,9 +323,12 @@ model Productstock {
 model Role {
   roleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name String @unique
+  description String?
   status Status @default(active)
-
+  isSystemRole Boolean @default(false) 
+  createdAt DateTime @default(now())
   auths Auth[]
+  @@index([name])
 }
 model Sale {
   saleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
