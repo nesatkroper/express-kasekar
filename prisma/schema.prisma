@@ -48,7 +48,7 @@ model Address {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  image ImageAddress[]
+  image Imageaddress[]
   city City @relation(fields: [cityId], references: [cityId])
   state State @relation(fields: [stateId], references: [stateId])
   customer Customer?  @relation(fields: [customerId], references: [customerId])

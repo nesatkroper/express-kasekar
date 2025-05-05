@@ -3,7 +3,6 @@ const { upload } = require("@/middleware/storage-middleware");
 const authenticateJWT = require("@/middleware/auth-middleware");
 
 const router = express.Router();
-
 const {
   select,
   create,
@@ -12,13 +11,14 @@ const {
   destroy,
   refresh,
 } = require("@/controllers/employee-controller");
-
 const {
   createInfo,
   updateInfo,
 } = require("@/controllers/employeeinfo-controller");
+const { exportEmployeesExcel } = require("@/services/excel/employee-excel");
 
 router.get("/re", refresh);
+router.get('/exp', exportEmployeesExcel);
 router.get("/:id?", select);
 router.post("/", create);
 router.put("/:id", update);
