@@ -262,7 +262,7 @@ exports.Prisma.EmployeeinfoScalarFieldEnum = {
   status: 'status'
 };
 
-exports.Prisma.ImageAddressScalarFieldEnum = {
+exports.Prisma.ImageaddressScalarFieldEnum = {
   imageId: 'imageId',
   imageUrl: 'imageUrl',
   imageType: 'imageType',
@@ -471,7 +471,7 @@ exports.Prisma.ModelName = {
   Department: 'Department',
   Employee: 'Employee',
   Employeeinfo: 'Employeeinfo',
-  ImageAddress: 'ImageAddress',
+  Imageaddress: 'Imageaddress',
   Log: 'Log',
   Notification: 'Notification',
   Payment: 'Payment',

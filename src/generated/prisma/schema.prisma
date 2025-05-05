@@ -55,7 +55,7 @@ model Address {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  image    ImageAddress[]
+  image    Imageaddress[]
   city     City           @relation(fields: [cityId], references: [cityId])
   state    State          @relation(fields: [stateId], references: [stateId])
   customer Customer?      @relation(fields: [customerId], references: [customerId])
@@ -238,7 +238,7 @@ model Employeeinfo {
   employee Employee @relation(fields: [employeeId], references: [employeeId])
 }
 
-model ImageAddress {
+model Imageaddress {
   imageId   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   imageUrl  String
   imageType String?

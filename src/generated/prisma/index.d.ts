@@ -79,10 +79,10 @@ export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
  */
 export type Employeeinfo = $Result.DefaultSelection<Prisma.$EmployeeinfoPayload>
 /**
- * Model ImageAddress
+ * Model Imageaddress
  * 
  */
-export type ImageAddress = $Result.DefaultSelection<Prisma.$ImageAddressPayload>
+export type Imageaddress = $Result.DefaultSelection<Prisma.$ImageaddressPayload>
 /**
  * Model Log
  * 
@@ -476,14 +476,14 @@ export class PrismaClient<
   get employeeinfo(): Prisma.EmployeeinfoDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.imageAddress`: Exposes CRUD operations for the **ImageAddress** model.
+   * `prisma.imageaddress`: Exposes CRUD operations for the **Imageaddress** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more ImageAddresses
-    * const imageAddresses = await prisma.imageAddress.findMany()
+    * // Fetch zero or more Imageaddresses
+    * const imageaddresses = await prisma.imageaddress.findMany()
     * ```
     */
-  get imageAddress(): Prisma.ImageAddressDelegate<ExtArgs, ClientOptions>;
+  get imageaddress(): Prisma.ImageaddressDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.log`: Exposes CRUD operations for the **Log** model.
@@ -1067,7 +1067,7 @@ export namespace Prisma {
     Department: 'Department',
     Employee: 'Employee',
     Employeeinfo: 'Employeeinfo',
-    ImageAddress: 'ImageAddress',
+    Imageaddress: 'Imageaddress',
     Log: 'Log',
     Notification: 'Notification',
     Payment: 'Payment',
@@ -1099,7 +1099,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "address" | "attendance" | "auth" | "authLog" | "cart" | "cartnote" | "category" | "city" | "customer" | "customerinfo" | "department" | "employee" | "employeeinfo" | "imageAddress" | "log" | "notification" | "payment" | "position" | "product" | "productstock" | "role" | "sale" | "saledetail" | "state" | "supplier" | "token" | "user"
+      modelProps: "address" | "attendance" | "auth" | "authLog" | "cart" | "cartnote" | "category" | "city" | "customer" | "customerinfo" | "department" | "employee" | "employeeinfo" | "imageaddress" | "log" | "notification" | "payment" | "position" | "product" | "productstock" | "role" | "sale" | "saledetail" | "state" | "supplier" | "token" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2065,77 +2065,77 @@ export namespace Prisma {
           }
         }
       }
-      ImageAddress: {
-        payload: Prisma.$ImageAddressPayload<ExtArgs>
-        fields: Prisma.ImageAddressFieldRefs
+      Imageaddress: {
+        payload: Prisma.$ImageaddressPayload<ExtArgs>
+        fields: Prisma.ImageaddressFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ImageAddressFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload> | null
+            args: Prisma.ImageaddressFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ImageAddressFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           findFirst: {
-            args: Prisma.ImageAddressFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload> | null
+            args: Prisma.ImageaddressFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ImageAddressFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           findMany: {
-            args: Prisma.ImageAddressFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>[]
+            args: Prisma.ImageaddressFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>[]
           }
           create: {
-            args: Prisma.ImageAddressCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           createMany: {
-            args: Prisma.ImageAddressCreateManyArgs<ExtArgs>
+            args: Prisma.ImageaddressCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ImageAddressCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>[]
+            args: Prisma.ImageaddressCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>[]
           }
           delete: {
-            args: Prisma.ImageAddressDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           update: {
-            args: Prisma.ImageAddressUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           deleteMany: {
-            args: Prisma.ImageAddressDeleteManyArgs<ExtArgs>
+            args: Prisma.ImageaddressDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ImageAddressUpdateManyArgs<ExtArgs>
+            args: Prisma.ImageaddressUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.ImageAddressUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>[]
+            args: Prisma.ImageaddressUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>[]
           }
           upsert: {
-            args: Prisma.ImageAddressUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImageAddressPayload>
+            args: Prisma.ImageaddressUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageaddressPayload>
           }
           aggregate: {
-            args: Prisma.ImageAddressAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateImageAddress>
+            args: Prisma.ImageaddressAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateImageaddress>
           }
           groupBy: {
-            args: Prisma.ImageAddressGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ImageAddressGroupByOutputType>[]
+            args: Prisma.ImageaddressGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ImageaddressGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ImageAddressCountArgs<ExtArgs>
-            result: $Utils.Optional<ImageAddressCountAggregateOutputType> | number
+            args: Prisma.ImageaddressCountArgs<ExtArgs>
+            result: $Utils.Optional<ImageaddressCountAggregateOutputType> | number
           }
         }
       }
@@ -3198,7 +3198,7 @@ export namespace Prisma {
     department?: DepartmentOmit
     employee?: EmployeeOmit
     employeeinfo?: EmployeeinfoOmit
-    imageAddress?: ImageAddressOmit
+    imageaddress?: ImageaddressOmit
     log?: LogOmit
     notification?: NotificationOmit
     payment?: PaymentOmit
@@ -3328,7 +3328,7 @@ export namespace Prisma {
    * AddressCountOutputType without action
    */
   export type AddressCountOutputTypeCountImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
   }
 
 
@@ -4257,7 +4257,7 @@ export namespace Prisma {
   export type $AddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Address"
     objects: {
-      image: Prisma.$ImageAddressPayload<ExtArgs>[]
+      image: Prisma.$ImageaddressPayload<ExtArgs>[]
       city: Prisma.$CityPayload<ExtArgs>
       state: Prisma.$StatePayload<ExtArgs>
       customer: Prisma.$CustomerPayload<ExtArgs> | null
@@ -4670,7 +4670,7 @@ export namespace Prisma {
    */
   export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    image<T extends Address$imageArgs<ExtArgs> = {}>(args?: Subset<T, Address$imageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    image<T extends Address$imageArgs<ExtArgs> = {}>(args?: Subset<T, Address$imageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     city<T extends CityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CityDefaultArgs<ExtArgs>>): Prisma__CityClient<$Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     state<T extends StateDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StateDefaultArgs<ExtArgs>>): Prisma__StateClient<$Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     customer<T extends Address$customerArgs<ExtArgs> = {}>(args?: Subset<T, Address$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -5116,23 +5116,23 @@ export namespace Prisma {
    */
   export type Address$imageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
-    where?: ImageAddressWhereInput
-    orderBy?: ImageAddressOrderByWithRelationInput | ImageAddressOrderByWithRelationInput[]
-    cursor?: ImageAddressWhereUniqueInput
+    include?: ImageaddressInclude<ExtArgs> | null
+    where?: ImageaddressWhereInput
+    orderBy?: ImageaddressOrderByWithRelationInput | ImageaddressOrderByWithRelationInput[]
+    cursor?: ImageaddressWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ImageAddressScalarFieldEnum | ImageAddressScalarFieldEnum[]
+    distinct?: ImageaddressScalarFieldEnum | ImageaddressScalarFieldEnum[]
   }
 
   /**
@@ -19123,16 +19123,16 @@ export namespace Prisma {
 
 
   /**
-   * Model ImageAddress
+   * Model Imageaddress
    */
 
-  export type AggregateImageAddress = {
-    _count: ImageAddressCountAggregateOutputType | null
-    _min: ImageAddressMinAggregateOutputType | null
-    _max: ImageAddressMaxAggregateOutputType | null
+  export type AggregateImageaddress = {
+    _count: ImageaddressCountAggregateOutputType | null
+    _min: ImageaddressMinAggregateOutputType | null
+    _max: ImageaddressMaxAggregateOutputType | null
   }
 
-  export type ImageAddressMinAggregateOutputType = {
+  export type ImageaddressMinAggregateOutputType = {
     imageId: string | null
     imageUrl: string | null
     imageType: string | null
@@ -19142,7 +19142,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type ImageAddressMaxAggregateOutputType = {
+  export type ImageaddressMaxAggregateOutputType = {
     imageId: string | null
     imageUrl: string | null
     imageType: string | null
@@ -19152,7 +19152,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type ImageAddressCountAggregateOutputType = {
+  export type ImageaddressCountAggregateOutputType = {
     imageId: number
     imageUrl: number
     imageType: number
@@ -19164,7 +19164,7 @@ export namespace Prisma {
   }
 
 
-  export type ImageAddressMinAggregateInputType = {
+  export type ImageaddressMinAggregateInputType = {
     imageId?: true
     imageUrl?: true
     imageType?: true
@@ -19174,7 +19174,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type ImageAddressMaxAggregateInputType = {
+  export type ImageaddressMaxAggregateInputType = {
     imageId?: true
     imageUrl?: true
     imageType?: true
@@ -19184,7 +19184,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type ImageAddressCountAggregateInputType = {
+  export type ImageaddressCountAggregateInputType = {
     imageId?: true
     imageUrl?: true
     imageType?: true
@@ -19195,79 +19195,79 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ImageAddressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ImageAddress to aggregate.
+     * Filter which Imageaddress to aggregate.
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ImageAddresses to fetch.
+     * Determine the order of Imageaddresses to fetch.
      */
-    orderBy?: ImageAddressOrderByWithRelationInput | ImageAddressOrderByWithRelationInput[]
+    orderBy?: ImageaddressOrderByWithRelationInput | ImageaddressOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ImageAddressWhereUniqueInput
+    cursor?: ImageaddressWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ImageAddresses from the position of the cursor.
+     * Take `±n` Imageaddresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ImageAddresses.
+     * Skip the first `n` Imageaddresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned ImageAddresses
+     * Count returned Imageaddresses
     **/
-    _count?: true | ImageAddressCountAggregateInputType
+    _count?: true | ImageaddressCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ImageAddressMinAggregateInputType
+    _min?: ImageaddressMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ImageAddressMaxAggregateInputType
+    _max?: ImageaddressMaxAggregateInputType
   }
 
-  export type GetImageAddressAggregateType<T extends ImageAddressAggregateArgs> = {
-        [P in keyof T & keyof AggregateImageAddress]: P extends '_count' | 'count'
+  export type GetImageaddressAggregateType<T extends ImageaddressAggregateArgs> = {
+        [P in keyof T & keyof AggregateImageaddress]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateImageAddress[P]>
-      : GetScalarType<T[P], AggregateImageAddress[P]>
+        : GetScalarType<T[P], AggregateImageaddress[P]>
+      : GetScalarType<T[P], AggregateImageaddress[P]>
   }
 
 
 
 
-  export type ImageAddressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ImageAddressWhereInput
-    orderBy?: ImageAddressOrderByWithAggregationInput | ImageAddressOrderByWithAggregationInput[]
-    by: ImageAddressScalarFieldEnum[] | ImageAddressScalarFieldEnum
-    having?: ImageAddressScalarWhereWithAggregatesInput
+  export type ImageaddressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageaddressWhereInput
+    orderBy?: ImageaddressOrderByWithAggregationInput | ImageaddressOrderByWithAggregationInput[]
+    by: ImageaddressScalarFieldEnum[] | ImageaddressScalarFieldEnum
+    having?: ImageaddressScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ImageAddressCountAggregateInputType | true
-    _min?: ImageAddressMinAggregateInputType
-    _max?: ImageAddressMaxAggregateInputType
+    _count?: ImageaddressCountAggregateInputType | true
+    _min?: ImageaddressMinAggregateInputType
+    _max?: ImageaddressMaxAggregateInputType
   }
 
-  export type ImageAddressGroupByOutputType = {
+  export type ImageaddressGroupByOutputType = {
     imageId: string
     imageUrl: string
     imageType: string | null
@@ -19275,26 +19275,26 @@ export namespace Prisma {
     status: $Enums.Status
     createdAt: Date
     updatedAt: Date
-    _count: ImageAddressCountAggregateOutputType | null
-    _min: ImageAddressMinAggregateOutputType | null
-    _max: ImageAddressMaxAggregateOutputType | null
+    _count: ImageaddressCountAggregateOutputType | null
+    _min: ImageaddressMinAggregateOutputType | null
+    _max: ImageaddressMaxAggregateOutputType | null
   }
 
-  type GetImageAddressGroupByPayload<T extends ImageAddressGroupByArgs> = Prisma.PrismaPromise<
+  type GetImageaddressGroupByPayload<T extends ImageaddressGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ImageAddressGroupByOutputType, T['by']> &
+      PickEnumerable<ImageaddressGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ImageAddressGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ImageaddressGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ImageAddressGroupByOutputType[P]>
-            : GetScalarType<T[P], ImageAddressGroupByOutputType[P]>
+              : GetScalarType<T[P], ImageaddressGroupByOutputType[P]>
+            : GetScalarType<T[P], ImageaddressGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ImageAddressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ImageaddressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     imageId?: boolean
     imageUrl?: boolean
     imageType?: boolean
@@ -19303,9 +19303,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     address?: boolean | AddressDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["imageAddress"]>
+  }, ExtArgs["result"]["imageaddress"]>
 
-  export type ImageAddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ImageaddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     imageId?: boolean
     imageUrl?: boolean
     imageType?: boolean
@@ -19314,9 +19314,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     address?: boolean | AddressDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["imageAddress"]>
+  }, ExtArgs["result"]["imageaddress"]>
 
-  export type ImageAddressSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ImageaddressSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     imageId?: boolean
     imageUrl?: boolean
     imageType?: boolean
@@ -19325,9 +19325,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     address?: boolean | AddressDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["imageAddress"]>
+  }, ExtArgs["result"]["imageaddress"]>
 
-  export type ImageAddressSelectScalar = {
+  export type ImageaddressSelectScalar = {
     imageId?: boolean
     imageUrl?: boolean
     imageType?: boolean
@@ -19337,19 +19337,19 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ImageAddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"imageId" | "imageUrl" | "imageType" | "addressId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["imageAddress"]>
-  export type ImageAddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"imageId" | "imageUrl" | "imageType" | "addressId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["imageaddress"]>
+  export type ImageaddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     address?: boolean | AddressDefaultArgs<ExtArgs>
   }
-  export type ImageAddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     address?: boolean | AddressDefaultArgs<ExtArgs>
   }
-  export type ImageAddressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     address?: boolean | AddressDefaultArgs<ExtArgs>
   }
 
-  export type $ImageAddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ImageAddress"
+  export type $ImageaddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Imageaddress"
     objects: {
       address: Prisma.$AddressPayload<ExtArgs>
     }
@@ -19361,136 +19361,136 @@ export namespace Prisma {
       status: $Enums.Status
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["imageAddress"]>
+    }, ExtArgs["result"]["imageaddress"]>
     composites: {}
   }
 
-  type ImageAddressGetPayload<S extends boolean | null | undefined | ImageAddressDefaultArgs> = $Result.GetResult<Prisma.$ImageAddressPayload, S>
+  type ImageaddressGetPayload<S extends boolean | null | undefined | ImageaddressDefaultArgs> = $Result.GetResult<Prisma.$ImageaddressPayload, S>
 
-  type ImageAddressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ImageAddressFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ImageAddressCountAggregateInputType | true
+  type ImageaddressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ImageaddressFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ImageaddressCountAggregateInputType | true
     }
 
-  export interface ImageAddressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ImageAddress'], meta: { name: 'ImageAddress' } }
+  export interface ImageaddressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Imageaddress'], meta: { name: 'Imageaddress' } }
     /**
-     * Find zero or one ImageAddress that matches the filter.
-     * @param {ImageAddressFindUniqueArgs} args - Arguments to find a ImageAddress
+     * Find zero or one Imageaddress that matches the filter.
+     * @param {ImageaddressFindUniqueArgs} args - Arguments to find a Imageaddress
      * @example
-     * // Get one ImageAddress
-     * const imageAddress = await prisma.imageAddress.findUnique({
+     * // Get one Imageaddress
+     * const imageaddress = await prisma.imageaddress.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ImageAddressFindUniqueArgs>(args: SelectSubset<T, ImageAddressFindUniqueArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ImageaddressFindUniqueArgs>(args: SelectSubset<T, ImageaddressFindUniqueArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one ImageAddress that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Imageaddress that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ImageAddressFindUniqueOrThrowArgs} args - Arguments to find a ImageAddress
+     * @param {ImageaddressFindUniqueOrThrowArgs} args - Arguments to find a Imageaddress
      * @example
-     * // Get one ImageAddress
-     * const imageAddress = await prisma.imageAddress.findUniqueOrThrow({
+     * // Get one Imageaddress
+     * const imageaddress = await prisma.imageaddress.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ImageAddressFindUniqueOrThrowArgs>(args: SelectSubset<T, ImageAddressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ImageaddressFindUniqueOrThrowArgs>(args: SelectSubset<T, ImageaddressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first ImageAddress that matches the filter.
+     * Find the first Imageaddress that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressFindFirstArgs} args - Arguments to find a ImageAddress
+     * @param {ImageaddressFindFirstArgs} args - Arguments to find a Imageaddress
      * @example
-     * // Get one ImageAddress
-     * const imageAddress = await prisma.imageAddress.findFirst({
+     * // Get one Imageaddress
+     * const imageaddress = await prisma.imageaddress.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ImageAddressFindFirstArgs>(args?: SelectSubset<T, ImageAddressFindFirstArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ImageaddressFindFirstArgs>(args?: SelectSubset<T, ImageaddressFindFirstArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first ImageAddress that matches the filter or
+     * Find the first Imageaddress that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressFindFirstOrThrowArgs} args - Arguments to find a ImageAddress
+     * @param {ImageaddressFindFirstOrThrowArgs} args - Arguments to find a Imageaddress
      * @example
-     * // Get one ImageAddress
-     * const imageAddress = await prisma.imageAddress.findFirstOrThrow({
+     * // Get one Imageaddress
+     * const imageaddress = await prisma.imageaddress.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ImageAddressFindFirstOrThrowArgs>(args?: SelectSubset<T, ImageAddressFindFirstOrThrowArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ImageaddressFindFirstOrThrowArgs>(args?: SelectSubset<T, ImageaddressFindFirstOrThrowArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more ImageAddresses that matches the filter.
+     * Find zero or more Imageaddresses that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ImageaddressFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ImageAddresses
-     * const imageAddresses = await prisma.imageAddress.findMany()
+     * // Get all Imageaddresses
+     * const imageaddresses = await prisma.imageaddress.findMany()
      * 
-     * // Get first 10 ImageAddresses
-     * const imageAddresses = await prisma.imageAddress.findMany({ take: 10 })
+     * // Get first 10 Imageaddresses
+     * const imageaddresses = await prisma.imageaddress.findMany({ take: 10 })
      * 
      * // Only select the `imageId`
-     * const imageAddressWithImageIdOnly = await prisma.imageAddress.findMany({ select: { imageId: true } })
+     * const imageaddressWithImageIdOnly = await prisma.imageaddress.findMany({ select: { imageId: true } })
      * 
      */
-    findMany<T extends ImageAddressFindManyArgs>(args?: SelectSubset<T, ImageAddressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ImageaddressFindManyArgs>(args?: SelectSubset<T, ImageaddressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a ImageAddress.
-     * @param {ImageAddressCreateArgs} args - Arguments to create a ImageAddress.
+     * Create a Imageaddress.
+     * @param {ImageaddressCreateArgs} args - Arguments to create a Imageaddress.
      * @example
-     * // Create one ImageAddress
-     * const ImageAddress = await prisma.imageAddress.create({
+     * // Create one Imageaddress
+     * const Imageaddress = await prisma.imageaddress.create({
      *   data: {
-     *     // ... data to create a ImageAddress
+     *     // ... data to create a Imageaddress
      *   }
      * })
      * 
      */
-    create<T extends ImageAddressCreateArgs>(args: SelectSubset<T, ImageAddressCreateArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ImageaddressCreateArgs>(args: SelectSubset<T, ImageaddressCreateArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many ImageAddresses.
-     * @param {ImageAddressCreateManyArgs} args - Arguments to create many ImageAddresses.
+     * Create many Imageaddresses.
+     * @param {ImageaddressCreateManyArgs} args - Arguments to create many Imageaddresses.
      * @example
-     * // Create many ImageAddresses
-     * const imageAddress = await prisma.imageAddress.createMany({
+     * // Create many Imageaddresses
+     * const imageaddress = await prisma.imageaddress.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ImageAddressCreateManyArgs>(args?: SelectSubset<T, ImageAddressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ImageaddressCreateManyArgs>(args?: SelectSubset<T, ImageaddressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many ImageAddresses and returns the data saved in the database.
-     * @param {ImageAddressCreateManyAndReturnArgs} args - Arguments to create many ImageAddresses.
+     * Create many Imageaddresses and returns the data saved in the database.
+     * @param {ImageaddressCreateManyAndReturnArgs} args - Arguments to create many Imageaddresses.
      * @example
-     * // Create many ImageAddresses
-     * const imageAddress = await prisma.imageAddress.createManyAndReturn({
+     * // Create many Imageaddresses
+     * const imageaddress = await prisma.imageaddress.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many ImageAddresses and only return the `imageId`
-     * const imageAddressWithImageIdOnly = await prisma.imageAddress.createManyAndReturn({
+     * // Create many Imageaddresses and only return the `imageId`
+     * const imageaddressWithImageIdOnly = await prisma.imageaddress.createManyAndReturn({
      *   select: { imageId: true },
      *   data: [
      *     // ... provide data here
@@ -19500,28 +19500,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends ImageAddressCreateManyAndReturnArgs>(args?: SelectSubset<T, ImageAddressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ImageaddressCreateManyAndReturnArgs>(args?: SelectSubset<T, ImageaddressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a ImageAddress.
-     * @param {ImageAddressDeleteArgs} args - Arguments to delete one ImageAddress.
+     * Delete a Imageaddress.
+     * @param {ImageaddressDeleteArgs} args - Arguments to delete one Imageaddress.
      * @example
-     * // Delete one ImageAddress
-     * const ImageAddress = await prisma.imageAddress.delete({
+     * // Delete one Imageaddress
+     * const Imageaddress = await prisma.imageaddress.delete({
      *   where: {
-     *     // ... filter to delete one ImageAddress
+     *     // ... filter to delete one Imageaddress
      *   }
      * })
      * 
      */
-    delete<T extends ImageAddressDeleteArgs>(args: SelectSubset<T, ImageAddressDeleteArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ImageaddressDeleteArgs>(args: SelectSubset<T, ImageaddressDeleteArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one ImageAddress.
-     * @param {ImageAddressUpdateArgs} args - Arguments to update one ImageAddress.
+     * Update one Imageaddress.
+     * @param {ImageaddressUpdateArgs} args - Arguments to update one Imageaddress.
      * @example
-     * // Update one ImageAddress
-     * const imageAddress = await prisma.imageAddress.update({
+     * // Update one Imageaddress
+     * const imageaddress = await prisma.imageaddress.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19531,30 +19531,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ImageAddressUpdateArgs>(args: SelectSubset<T, ImageAddressUpdateArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ImageaddressUpdateArgs>(args: SelectSubset<T, ImageaddressUpdateArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more ImageAddresses.
-     * @param {ImageAddressDeleteManyArgs} args - Arguments to filter ImageAddresses to delete.
+     * Delete zero or more Imageaddresses.
+     * @param {ImageaddressDeleteManyArgs} args - Arguments to filter Imageaddresses to delete.
      * @example
-     * // Delete a few ImageAddresses
-     * const { count } = await prisma.imageAddress.deleteMany({
+     * // Delete a few Imageaddresses
+     * const { count } = await prisma.imageaddress.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ImageAddressDeleteManyArgs>(args?: SelectSubset<T, ImageAddressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ImageaddressDeleteManyArgs>(args?: SelectSubset<T, ImageaddressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ImageAddresses.
+     * Update zero or more Imageaddresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ImageaddressUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ImageAddresses
-     * const imageAddress = await prisma.imageAddress.updateMany({
+     * // Update many Imageaddresses
+     * const imageaddress = await prisma.imageaddress.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19564,14 +19564,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ImageAddressUpdateManyArgs>(args: SelectSubset<T, ImageAddressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ImageaddressUpdateManyArgs>(args: SelectSubset<T, ImageaddressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ImageAddresses and returns the data updated in the database.
-     * @param {ImageAddressUpdateManyAndReturnArgs} args - Arguments to update many ImageAddresses.
+     * Update zero or more Imageaddresses and returns the data updated in the database.
+     * @param {ImageaddressUpdateManyAndReturnArgs} args - Arguments to update many Imageaddresses.
      * @example
-     * // Update many ImageAddresses
-     * const imageAddress = await prisma.imageAddress.updateManyAndReturn({
+     * // Update many Imageaddresses
+     * const imageaddress = await prisma.imageaddress.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19580,8 +19580,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more ImageAddresses and only return the `imageId`
-     * const imageAddressWithImageIdOnly = await prisma.imageAddress.updateManyAndReturn({
+     * // Update zero or more Imageaddresses and only return the `imageId`
+     * const imageaddressWithImageIdOnly = await prisma.imageaddress.updateManyAndReturn({
      *   select: { imageId: true },
      *   where: {
      *     // ... provide filter here
@@ -19594,56 +19594,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends ImageAddressUpdateManyAndReturnArgs>(args: SelectSubset<T, ImageAddressUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ImageaddressUpdateManyAndReturnArgs>(args: SelectSubset<T, ImageaddressUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one ImageAddress.
-     * @param {ImageAddressUpsertArgs} args - Arguments to update or create a ImageAddress.
+     * Create or update one Imageaddress.
+     * @param {ImageaddressUpsertArgs} args - Arguments to update or create a Imageaddress.
      * @example
-     * // Update or create a ImageAddress
-     * const imageAddress = await prisma.imageAddress.upsert({
+     * // Update or create a Imageaddress
+     * const imageaddress = await prisma.imageaddress.upsert({
      *   create: {
-     *     // ... data to create a ImageAddress
+     *     // ... data to create a Imageaddress
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ImageAddress we want to update
+     *     // ... the filter for the Imageaddress we want to update
      *   }
      * })
      */
-    upsert<T extends ImageAddressUpsertArgs>(args: SelectSubset<T, ImageAddressUpsertArgs<ExtArgs>>): Prisma__ImageAddressClient<$Result.GetResult<Prisma.$ImageAddressPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ImageaddressUpsertArgs>(args: SelectSubset<T, ImageaddressUpsertArgs<ExtArgs>>): Prisma__ImageaddressClient<$Result.GetResult<Prisma.$ImageaddressPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of ImageAddresses.
+     * Count the number of Imageaddresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressCountArgs} args - Arguments to filter ImageAddresses to count.
+     * @param {ImageaddressCountArgs} args - Arguments to filter Imageaddresses to count.
      * @example
-     * // Count the number of ImageAddresses
-     * const count = await prisma.imageAddress.count({
+     * // Count the number of Imageaddresses
+     * const count = await prisma.imageaddress.count({
      *   where: {
-     *     // ... the filter for the ImageAddresses we want to count
+     *     // ... the filter for the Imageaddresses we want to count
      *   }
      * })
     **/
-    count<T extends ImageAddressCountArgs>(
-      args?: Subset<T, ImageAddressCountArgs>,
+    count<T extends ImageaddressCountArgs>(
+      args?: Subset<T, ImageaddressCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ImageAddressCountAggregateOutputType>
+          : GetScalarType<T['select'], ImageaddressCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a ImageAddress.
+     * Allows you to perform aggregations operations on a Imageaddress.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ImageaddressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -19663,13 +19663,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ImageAddressAggregateArgs>(args: Subset<T, ImageAddressAggregateArgs>): Prisma.PrismaPromise<GetImageAddressAggregateType<T>>
+    aggregate<T extends ImageaddressAggregateArgs>(args: Subset<T, ImageaddressAggregateArgs>): Prisma.PrismaPromise<GetImageaddressAggregateType<T>>
 
     /**
-     * Group by ImageAddress.
+     * Group by Imageaddress.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ImageAddressGroupByArgs} args - Group by arguments.
+     * @param {ImageaddressGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -19684,14 +19684,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ImageAddressGroupByArgs,
+      T extends ImageaddressGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ImageAddressGroupByArgs['orderBy'] }
-        : { orderBy?: ImageAddressGroupByArgs['orderBy'] },
+        ? { orderBy: ImageaddressGroupByArgs['orderBy'] }
+        : { orderBy?: ImageaddressGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -19740,20 +19740,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ImageAddressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetImageAddressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ImageaddressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetImageaddressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the ImageAddress model
+   * Fields of the Imageaddress model
    */
-  readonly fields: ImageAddressFieldRefs;
+  readonly fields: ImageaddressFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ImageAddress.
+   * The delegate class that acts as a "Promise-like" for Imageaddress.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ImageAddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ImageaddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -19782,427 +19782,427 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the ImageAddress model
+   * Fields of the Imageaddress model
    */
-  interface ImageAddressFieldRefs {
-    readonly imageId: FieldRef<"ImageAddress", 'String'>
-    readonly imageUrl: FieldRef<"ImageAddress", 'String'>
-    readonly imageType: FieldRef<"ImageAddress", 'String'>
-    readonly addressId: FieldRef<"ImageAddress", 'String'>
-    readonly status: FieldRef<"ImageAddress", 'Status'>
-    readonly createdAt: FieldRef<"ImageAddress", 'DateTime'>
-    readonly updatedAt: FieldRef<"ImageAddress", 'DateTime'>
+  interface ImageaddressFieldRefs {
+    readonly imageId: FieldRef<"Imageaddress", 'String'>
+    readonly imageUrl: FieldRef<"Imageaddress", 'String'>
+    readonly imageType: FieldRef<"Imageaddress", 'String'>
+    readonly addressId: FieldRef<"Imageaddress", 'String'>
+    readonly status: FieldRef<"Imageaddress", 'Status'>
+    readonly createdAt: FieldRef<"Imageaddress", 'DateTime'>
+    readonly updatedAt: FieldRef<"Imageaddress", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * ImageAddress findUnique
+   * Imageaddress findUnique
    */
-  export type ImageAddressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter, which ImageAddress to fetch.
+     * Filter, which Imageaddress to fetch.
      */
-    where: ImageAddressWhereUniqueInput
+    where: ImageaddressWhereUniqueInput
   }
 
   /**
-   * ImageAddress findUniqueOrThrow
+   * Imageaddress findUniqueOrThrow
    */
-  export type ImageAddressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter, which ImageAddress to fetch.
+     * Filter, which Imageaddress to fetch.
      */
-    where: ImageAddressWhereUniqueInput
+    where: ImageaddressWhereUniqueInput
   }
 
   /**
-   * ImageAddress findFirst
+   * Imageaddress findFirst
    */
-  export type ImageAddressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter, which ImageAddress to fetch.
+     * Filter, which Imageaddress to fetch.
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ImageAddresses to fetch.
+     * Determine the order of Imageaddresses to fetch.
      */
-    orderBy?: ImageAddressOrderByWithRelationInput | ImageAddressOrderByWithRelationInput[]
+    orderBy?: ImageaddressOrderByWithRelationInput | ImageaddressOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ImageAddresses.
+     * Sets the position for searching for Imageaddresses.
      */
-    cursor?: ImageAddressWhereUniqueInput
+    cursor?: ImageaddressWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ImageAddresses from the position of the cursor.
+     * Take `±n` Imageaddresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ImageAddresses.
+     * Skip the first `n` Imageaddresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ImageAddresses.
+     * Filter by unique combinations of Imageaddresses.
      */
-    distinct?: ImageAddressScalarFieldEnum | ImageAddressScalarFieldEnum[]
+    distinct?: ImageaddressScalarFieldEnum | ImageaddressScalarFieldEnum[]
   }
 
   /**
-   * ImageAddress findFirstOrThrow
+   * Imageaddress findFirstOrThrow
    */
-  export type ImageAddressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter, which ImageAddress to fetch.
+     * Filter, which Imageaddress to fetch.
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ImageAddresses to fetch.
+     * Determine the order of Imageaddresses to fetch.
      */
-    orderBy?: ImageAddressOrderByWithRelationInput | ImageAddressOrderByWithRelationInput[]
+    orderBy?: ImageaddressOrderByWithRelationInput | ImageaddressOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ImageAddresses.
+     * Sets the position for searching for Imageaddresses.
      */
-    cursor?: ImageAddressWhereUniqueInput
+    cursor?: ImageaddressWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ImageAddresses from the position of the cursor.
+     * Take `±n` Imageaddresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ImageAddresses.
+     * Skip the first `n` Imageaddresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ImageAddresses.
+     * Filter by unique combinations of Imageaddresses.
      */
-    distinct?: ImageAddressScalarFieldEnum | ImageAddressScalarFieldEnum[]
+    distinct?: ImageaddressScalarFieldEnum | ImageaddressScalarFieldEnum[]
   }
 
   /**
-   * ImageAddress findMany
+   * Imageaddress findMany
    */
-  export type ImageAddressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter, which ImageAddresses to fetch.
+     * Filter, which Imageaddresses to fetch.
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ImageAddresses to fetch.
+     * Determine the order of Imageaddresses to fetch.
      */
-    orderBy?: ImageAddressOrderByWithRelationInput | ImageAddressOrderByWithRelationInput[]
+    orderBy?: ImageaddressOrderByWithRelationInput | ImageaddressOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing ImageAddresses.
+     * Sets the position for listing Imageaddresses.
      */
-    cursor?: ImageAddressWhereUniqueInput
+    cursor?: ImageaddressWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ImageAddresses from the position of the cursor.
+     * Take `±n` Imageaddresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ImageAddresses.
+     * Skip the first `n` Imageaddresses.
      */
     skip?: number
-    distinct?: ImageAddressScalarFieldEnum | ImageAddressScalarFieldEnum[]
+    distinct?: ImageaddressScalarFieldEnum | ImageaddressScalarFieldEnum[]
   }
 
   /**
-   * ImageAddress create
+   * Imageaddress create
    */
-  export type ImageAddressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * The data needed to create a ImageAddress.
+     * The data needed to create a Imageaddress.
      */
-    data: XOR<ImageAddressCreateInput, ImageAddressUncheckedCreateInput>
+    data: XOR<ImageaddressCreateInput, ImageaddressUncheckedCreateInput>
   }
 
   /**
-   * ImageAddress createMany
+   * Imageaddress createMany
    */
-  export type ImageAddressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many ImageAddresses.
+     * The data used to create many Imageaddresses.
      */
-    data: ImageAddressCreateManyInput | ImageAddressCreateManyInput[]
+    data: ImageaddressCreateManyInput | ImageaddressCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * ImageAddress createManyAndReturn
+   * Imageaddress createManyAndReturn
    */
-  export type ImageAddressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ImageaddressSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
-     * The data used to create many ImageAddresses.
+     * The data used to create many Imageaddresses.
      */
-    data: ImageAddressCreateManyInput | ImageAddressCreateManyInput[]
+    data: ImageaddressCreateManyInput | ImageaddressCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ImageaddressIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * ImageAddress update
+   * Imageaddress update
    */
-  export type ImageAddressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * The data needed to update a ImageAddress.
+     * The data needed to update a Imageaddress.
      */
-    data: XOR<ImageAddressUpdateInput, ImageAddressUncheckedUpdateInput>
+    data: XOR<ImageaddressUpdateInput, ImageaddressUncheckedUpdateInput>
     /**
-     * Choose, which ImageAddress to update.
+     * Choose, which Imageaddress to update.
      */
-    where: ImageAddressWhereUniqueInput
+    where: ImageaddressWhereUniqueInput
   }
 
   /**
-   * ImageAddress updateMany
+   * Imageaddress updateMany
    */
-  export type ImageAddressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update ImageAddresses.
+     * The data used to update Imageaddresses.
      */
-    data: XOR<ImageAddressUpdateManyMutationInput, ImageAddressUncheckedUpdateManyInput>
+    data: XOR<ImageaddressUpdateManyMutationInput, ImageaddressUncheckedUpdateManyInput>
     /**
-     * Filter which ImageAddresses to update
+     * Filter which Imageaddresses to update
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
-     * Limit how many ImageAddresses to update.
+     * Limit how many Imageaddresses to update.
      */
     limit?: number
   }
 
   /**
-   * ImageAddress updateManyAndReturn
+   * Imageaddress updateManyAndReturn
    */
-  export type ImageAddressUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ImageaddressSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
-     * The data used to update ImageAddresses.
+     * The data used to update Imageaddresses.
      */
-    data: XOR<ImageAddressUpdateManyMutationInput, ImageAddressUncheckedUpdateManyInput>
+    data: XOR<ImageaddressUpdateManyMutationInput, ImageaddressUncheckedUpdateManyInput>
     /**
-     * Filter which ImageAddresses to update
+     * Filter which Imageaddresses to update
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
-     * Limit how many ImageAddresses to update.
+     * Limit how many Imageaddresses to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ImageaddressIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * ImageAddress upsert
+   * Imageaddress upsert
    */
-  export type ImageAddressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * The filter to search for the ImageAddress to update in case it exists.
+     * The filter to search for the Imageaddress to update in case it exists.
      */
-    where: ImageAddressWhereUniqueInput
+    where: ImageaddressWhereUniqueInput
     /**
-     * In case the ImageAddress found by the `where` argument doesn't exist, create a new ImageAddress with this data.
+     * In case the Imageaddress found by the `where` argument doesn't exist, create a new Imageaddress with this data.
      */
-    create: XOR<ImageAddressCreateInput, ImageAddressUncheckedCreateInput>
+    create: XOR<ImageaddressCreateInput, ImageaddressUncheckedCreateInput>
     /**
-     * In case the ImageAddress was found with the provided `where` argument, update it with this data.
+     * In case the Imageaddress was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ImageAddressUpdateInput, ImageAddressUncheckedUpdateInput>
+    update: XOR<ImageaddressUpdateInput, ImageaddressUncheckedUpdateInput>
   }
 
   /**
-   * ImageAddress delete
+   * Imageaddress delete
    */
-  export type ImageAddressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
     /**
-     * Filter which ImageAddress to delete.
+     * Filter which Imageaddress to delete.
      */
-    where: ImageAddressWhereUniqueInput
+    where: ImageaddressWhereUniqueInput
   }
 
   /**
-   * ImageAddress deleteMany
+   * Imageaddress deleteMany
    */
-  export type ImageAddressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ImageAddresses to delete
+     * Filter which Imageaddresses to delete
      */
-    where?: ImageAddressWhereInput
+    where?: ImageaddressWhereInput
     /**
-     * Limit how many ImageAddresses to delete.
+     * Limit how many Imageaddresses to delete.
      */
     limit?: number
   }
 
   /**
-   * ImageAddress without action
+   * Imageaddress without action
    */
-  export type ImageAddressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ImageaddressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ImageAddress
+     * Select specific fields to fetch from the Imageaddress
      */
-    select?: ImageAddressSelect<ExtArgs> | null
+    select?: ImageaddressSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ImageAddress
+     * Omit specific fields from the Imageaddress
      */
-    omit?: ImageAddressOmit<ExtArgs> | null
+    omit?: ImageaddressOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageAddressInclude<ExtArgs> | null
+    include?: ImageaddressInclude<ExtArgs> | null
   }
 
 
@@ -35553,7 +35553,7 @@ export namespace Prisma {
   export type EmployeeinfoScalarFieldEnum = (typeof EmployeeinfoScalarFieldEnum)[keyof typeof EmployeeinfoScalarFieldEnum]
 
 
-  export const ImageAddressScalarFieldEnum: {
+  export const ImageaddressScalarFieldEnum: {
     imageId: 'imageId',
     imageUrl: 'imageUrl',
     imageType: 'imageType',
@@ -35563,7 +35563,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type ImageAddressScalarFieldEnum = (typeof ImageAddressScalarFieldEnum)[keyof typeof ImageAddressScalarFieldEnum]
+  export type ImageaddressScalarFieldEnum = (typeof ImageaddressScalarFieldEnum)[keyof typeof ImageaddressScalarFieldEnum]
 
 
   export const LogScalarFieldEnum: {
@@ -35925,7 +35925,7 @@ export namespace Prisma {
     status?: EnumStatusFilter<"Address"> | $Enums.Status
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
-    image?: ImageAddressListRelationFilter
+    image?: ImageaddressListRelationFilter
     city?: XOR<CityScalarRelationFilter, CityWhereInput>
     state?: XOR<StateScalarRelationFilter, StateWhereInput>
     customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
@@ -35945,7 +35945,7 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    image?: ImageAddressOrderByRelationAggregateInput
+    image?: ImageaddressOrderByRelationAggregateInput
     city?: CityOrderByWithRelationInput
     state?: StateOrderByWithRelationInput
     customer?: CustomerOrderByWithRelationInput
@@ -35968,7 +35968,7 @@ export namespace Prisma {
     status?: EnumStatusFilter<"Address"> | $Enums.Status
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
-    image?: ImageAddressListRelationFilter
+    image?: ImageaddressListRelationFilter
     city?: XOR<CityScalarRelationFilter, CityWhereInput>
     state?: XOR<StateScalarRelationFilter, StateWhereInput>
     customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
@@ -36903,21 +36903,21 @@ export namespace Prisma {
     status?: EnumStatusWithAggregatesFilter<"Employeeinfo"> | $Enums.Status
   }
 
-  export type ImageAddressWhereInput = {
-    AND?: ImageAddressWhereInput | ImageAddressWhereInput[]
-    OR?: ImageAddressWhereInput[]
-    NOT?: ImageAddressWhereInput | ImageAddressWhereInput[]
-    imageId?: UuidFilter<"ImageAddress"> | string
-    imageUrl?: StringFilter<"ImageAddress"> | string
-    imageType?: StringNullableFilter<"ImageAddress"> | string | null
-    addressId?: UuidFilter<"ImageAddress"> | string
-    status?: EnumStatusFilter<"ImageAddress"> | $Enums.Status
-    createdAt?: DateTimeFilter<"ImageAddress"> | Date | string
-    updatedAt?: DateTimeFilter<"ImageAddress"> | Date | string
+  export type ImageaddressWhereInput = {
+    AND?: ImageaddressWhereInput | ImageaddressWhereInput[]
+    OR?: ImageaddressWhereInput[]
+    NOT?: ImageaddressWhereInput | ImageaddressWhereInput[]
+    imageId?: UuidFilter<"Imageaddress"> | string
+    imageUrl?: StringFilter<"Imageaddress"> | string
+    imageType?: StringNullableFilter<"Imageaddress"> | string | null
+    addressId?: UuidFilter<"Imageaddress"> | string
+    status?: EnumStatusFilter<"Imageaddress"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Imageaddress"> | Date | string
+    updatedAt?: DateTimeFilter<"Imageaddress"> | Date | string
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
   }
 
-  export type ImageAddressOrderByWithRelationInput = {
+  export type ImageaddressOrderByWithRelationInput = {
     imageId?: SortOrder
     imageUrl?: SortOrder
     imageType?: SortOrderInput | SortOrder
@@ -36928,21 +36928,21 @@ export namespace Prisma {
     address?: AddressOrderByWithRelationInput
   }
 
-  export type ImageAddressWhereUniqueInput = Prisma.AtLeast<{
+  export type ImageaddressWhereUniqueInput = Prisma.AtLeast<{
     imageId?: string
-    AND?: ImageAddressWhereInput | ImageAddressWhereInput[]
-    OR?: ImageAddressWhereInput[]
-    NOT?: ImageAddressWhereInput | ImageAddressWhereInput[]
-    imageUrl?: StringFilter<"ImageAddress"> | string
-    imageType?: StringNullableFilter<"ImageAddress"> | string | null
-    addressId?: UuidFilter<"ImageAddress"> | string
-    status?: EnumStatusFilter<"ImageAddress"> | $Enums.Status
-    createdAt?: DateTimeFilter<"ImageAddress"> | Date | string
-    updatedAt?: DateTimeFilter<"ImageAddress"> | Date | string
+    AND?: ImageaddressWhereInput | ImageaddressWhereInput[]
+    OR?: ImageaddressWhereInput[]
+    NOT?: ImageaddressWhereInput | ImageaddressWhereInput[]
+    imageUrl?: StringFilter<"Imageaddress"> | string
+    imageType?: StringNullableFilter<"Imageaddress"> | string | null
+    addressId?: UuidFilter<"Imageaddress"> | string
+    status?: EnumStatusFilter<"Imageaddress"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Imageaddress"> | Date | string
+    updatedAt?: DateTimeFilter<"Imageaddress"> | Date | string
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
   }, "imageId">
 
-  export type ImageAddressOrderByWithAggregationInput = {
+  export type ImageaddressOrderByWithAggregationInput = {
     imageId?: SortOrder
     imageUrl?: SortOrder
     imageType?: SortOrderInput | SortOrder
@@ -36950,22 +36950,22 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: ImageAddressCountOrderByAggregateInput
-    _max?: ImageAddressMaxOrderByAggregateInput
-    _min?: ImageAddressMinOrderByAggregateInput
+    _count?: ImageaddressCountOrderByAggregateInput
+    _max?: ImageaddressMaxOrderByAggregateInput
+    _min?: ImageaddressMinOrderByAggregateInput
   }
 
-  export type ImageAddressScalarWhereWithAggregatesInput = {
-    AND?: ImageAddressScalarWhereWithAggregatesInput | ImageAddressScalarWhereWithAggregatesInput[]
-    OR?: ImageAddressScalarWhereWithAggregatesInput[]
-    NOT?: ImageAddressScalarWhereWithAggregatesInput | ImageAddressScalarWhereWithAggregatesInput[]
-    imageId?: UuidWithAggregatesFilter<"ImageAddress"> | string
-    imageUrl?: StringWithAggregatesFilter<"ImageAddress"> | string
-    imageType?: StringNullableWithAggregatesFilter<"ImageAddress"> | string | null
-    addressId?: UuidWithAggregatesFilter<"ImageAddress"> | string
-    status?: EnumStatusWithAggregatesFilter<"ImageAddress"> | $Enums.Status
-    createdAt?: DateTimeWithAggregatesFilter<"ImageAddress"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"ImageAddress"> | Date | string
+  export type ImageaddressScalarWhereWithAggregatesInput = {
+    AND?: ImageaddressScalarWhereWithAggregatesInput | ImageaddressScalarWhereWithAggregatesInput[]
+    OR?: ImageaddressScalarWhereWithAggregatesInput[]
+    NOT?: ImageaddressScalarWhereWithAggregatesInput | ImageaddressScalarWhereWithAggregatesInput[]
+    imageId?: UuidWithAggregatesFilter<"Imageaddress"> | string
+    imageUrl?: StringWithAggregatesFilter<"Imageaddress"> | string
+    imageType?: StringNullableWithAggregatesFilter<"Imageaddress"> | string | null
+    addressId?: UuidWithAggregatesFilter<"Imageaddress"> | string
+    status?: EnumStatusWithAggregatesFilter<"Imageaddress"> | $Enums.Status
+    createdAt?: DateTimeWithAggregatesFilter<"Imageaddress"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Imageaddress"> | Date | string
   }
 
   export type LogWhereInput = {
@@ -37996,7 +37996,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressCreateNestedManyWithoutAddressInput
+    image?: ImageaddressCreateNestedManyWithoutAddressInput
     city: CityCreateNestedOneWithoutAddressesInput
     state: StateCreateNestedOneWithoutAddressesInput
     customer?: CustomerCreateNestedOneWithoutAddressInput
@@ -38016,7 +38016,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressUncheckedCreateNestedManyWithoutAddressInput
+    image?: ImageaddressUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressUpdateInput = {
@@ -38028,7 +38028,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUpdateManyWithoutAddressNestedInput
     city?: CityUpdateOneRequiredWithoutAddressesNestedInput
     state?: StateUpdateOneRequiredWithoutAddressesNestedInput
     customer?: CustomerUpdateOneWithoutAddressNestedInput
@@ -38048,7 +38048,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUncheckedUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressCreateManyInput = {
@@ -39041,7 +39041,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type ImageAddressCreateInput = {
+  export type ImageaddressCreateInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -39051,7 +39051,7 @@ export namespace Prisma {
     address: AddressCreateNestedOneWithoutImageInput
   }
 
-  export type ImageAddressUncheckedCreateInput = {
+  export type ImageaddressUncheckedCreateInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -39061,7 +39061,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ImageAddressUpdateInput = {
+  export type ImageaddressUpdateInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39071,7 +39071,7 @@ export namespace Prisma {
     address?: AddressUpdateOneRequiredWithoutImageNestedInput
   }
 
-  export type ImageAddressUncheckedUpdateInput = {
+  export type ImageaddressUncheckedUpdateInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39081,7 +39081,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ImageAddressCreateManyInput = {
+  export type ImageaddressCreateManyInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -39091,7 +39091,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ImageAddressUpdateManyMutationInput = {
+  export type ImageaddressUpdateManyMutationInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39100,7 +39100,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ImageAddressUncheckedUpdateManyInput = {
+  export type ImageaddressUncheckedUpdateManyInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -40291,10 +40291,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type ImageAddressListRelationFilter = {
-    every?: ImageAddressWhereInput
-    some?: ImageAddressWhereInput
-    none?: ImageAddressWhereInput
+  export type ImageaddressListRelationFilter = {
+    every?: ImageaddressWhereInput
+    some?: ImageaddressWhereInput
+    none?: ImageaddressWhereInput
   }
 
   export type CityScalarRelationFilter = {
@@ -40322,7 +40322,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type ImageAddressOrderByRelationAggregateInput = {
+  export type ImageaddressOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -41254,7 +41254,7 @@ export namespace Prisma {
     isNot?: AddressWhereInput
   }
 
-  export type ImageAddressCountOrderByAggregateInput = {
+  export type ImageaddressCountOrderByAggregateInput = {
     imageId?: SortOrder
     imageUrl?: SortOrder
     imageType?: SortOrder
@@ -41264,7 +41264,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ImageAddressMaxOrderByAggregateInput = {
+  export type ImageaddressMaxOrderByAggregateInput = {
     imageId?: SortOrder
     imageUrl?: SortOrder
     imageType?: SortOrder
@@ -41274,7 +41274,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ImageAddressMinOrderByAggregateInput = {
+  export type ImageaddressMinOrderByAggregateInput = {
     imageId?: SortOrder
     imageUrl?: SortOrder
     imageType?: SortOrder
@@ -41894,11 +41894,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ImageAddressCreateNestedManyWithoutAddressInput = {
-    create?: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput> | ImageAddressCreateWithoutAddressInput[] | ImageAddressUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ImageAddressCreateOrConnectWithoutAddressInput | ImageAddressCreateOrConnectWithoutAddressInput[]
-    createMany?: ImageAddressCreateManyAddressInputEnvelope
-    connect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
+  export type ImageaddressCreateNestedManyWithoutAddressInput = {
+    create?: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput> | ImageaddressCreateWithoutAddressInput[] | ImageaddressUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: ImageaddressCreateOrConnectWithoutAddressInput | ImageaddressCreateOrConnectWithoutAddressInput[]
+    createMany?: ImageaddressCreateManyAddressInputEnvelope
+    connect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
   }
 
   export type CityCreateNestedOneWithoutAddressesInput = {
@@ -41925,11 +41925,11 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
-  export type ImageAddressUncheckedCreateNestedManyWithoutAddressInput = {
-    create?: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput> | ImageAddressCreateWithoutAddressInput[] | ImageAddressUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ImageAddressCreateOrConnectWithoutAddressInput | ImageAddressCreateOrConnectWithoutAddressInput[]
-    createMany?: ImageAddressCreateManyAddressInputEnvelope
-    connect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
+  export type ImageaddressUncheckedCreateNestedManyWithoutAddressInput = {
+    create?: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput> | ImageaddressCreateWithoutAddressInput[] | ImageaddressUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: ImageaddressCreateOrConnectWithoutAddressInput | ImageaddressCreateOrConnectWithoutAddressInput[]
+    createMany?: ImageaddressCreateManyAddressInputEnvelope
+    connect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -41956,18 +41956,18 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type ImageAddressUpdateManyWithoutAddressNestedInput = {
-    create?: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput> | ImageAddressCreateWithoutAddressInput[] | ImageAddressUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ImageAddressCreateOrConnectWithoutAddressInput | ImageAddressCreateOrConnectWithoutAddressInput[]
-    upsert?: ImageAddressUpsertWithWhereUniqueWithoutAddressInput | ImageAddressUpsertWithWhereUniqueWithoutAddressInput[]
-    createMany?: ImageAddressCreateManyAddressInputEnvelope
-    set?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    disconnect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    delete?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    connect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    update?: ImageAddressUpdateWithWhereUniqueWithoutAddressInput | ImageAddressUpdateWithWhereUniqueWithoutAddressInput[]
-    updateMany?: ImageAddressUpdateManyWithWhereWithoutAddressInput | ImageAddressUpdateManyWithWhereWithoutAddressInput[]
-    deleteMany?: ImageAddressScalarWhereInput | ImageAddressScalarWhereInput[]
+  export type ImageaddressUpdateManyWithoutAddressNestedInput = {
+    create?: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput> | ImageaddressCreateWithoutAddressInput[] | ImageaddressUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: ImageaddressCreateOrConnectWithoutAddressInput | ImageaddressCreateOrConnectWithoutAddressInput[]
+    upsert?: ImageaddressUpsertWithWhereUniqueWithoutAddressInput | ImageaddressUpsertWithWhereUniqueWithoutAddressInput[]
+    createMany?: ImageaddressCreateManyAddressInputEnvelope
+    set?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    disconnect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    delete?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    connect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    update?: ImageaddressUpdateWithWhereUniqueWithoutAddressInput | ImageaddressUpdateWithWhereUniqueWithoutAddressInput[]
+    updateMany?: ImageaddressUpdateManyWithWhereWithoutAddressInput | ImageaddressUpdateManyWithWhereWithoutAddressInput[]
+    deleteMany?: ImageaddressScalarWhereInput | ImageaddressScalarWhereInput[]
   }
 
   export type CityUpdateOneRequiredWithoutAddressesNestedInput = {
@@ -42014,18 +42014,18 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type ImageAddressUncheckedUpdateManyWithoutAddressNestedInput = {
-    create?: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput> | ImageAddressCreateWithoutAddressInput[] | ImageAddressUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ImageAddressCreateOrConnectWithoutAddressInput | ImageAddressCreateOrConnectWithoutAddressInput[]
-    upsert?: ImageAddressUpsertWithWhereUniqueWithoutAddressInput | ImageAddressUpsertWithWhereUniqueWithoutAddressInput[]
-    createMany?: ImageAddressCreateManyAddressInputEnvelope
-    set?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    disconnect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    delete?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    connect?: ImageAddressWhereUniqueInput | ImageAddressWhereUniqueInput[]
-    update?: ImageAddressUpdateWithWhereUniqueWithoutAddressInput | ImageAddressUpdateWithWhereUniqueWithoutAddressInput[]
-    updateMany?: ImageAddressUpdateManyWithWhereWithoutAddressInput | ImageAddressUpdateManyWithWhereWithoutAddressInput[]
-    deleteMany?: ImageAddressScalarWhereInput | ImageAddressScalarWhereInput[]
+  export type ImageaddressUncheckedUpdateManyWithoutAddressNestedInput = {
+    create?: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput> | ImageaddressCreateWithoutAddressInput[] | ImageaddressUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: ImageaddressCreateOrConnectWithoutAddressInput | ImageaddressCreateOrConnectWithoutAddressInput[]
+    upsert?: ImageaddressUpsertWithWhereUniqueWithoutAddressInput | ImageaddressUpsertWithWhereUniqueWithoutAddressInput[]
+    createMany?: ImageaddressCreateManyAddressInputEnvelope
+    set?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    disconnect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    delete?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    connect?: ImageaddressWhereUniqueInput | ImageaddressWhereUniqueInput[]
+    update?: ImageaddressUpdateWithWhereUniqueWithoutAddressInput | ImageaddressUpdateWithWhereUniqueWithoutAddressInput[]
+    updateMany?: ImageaddressUpdateManyWithWhereWithoutAddressInput | ImageaddressUpdateManyWithWhereWithoutAddressInput[]
+    deleteMany?: ImageaddressScalarWhereInput | ImageaddressScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutAttendancesInput = {
@@ -44205,7 +44205,7 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type ImageAddressCreateWithoutAddressInput = {
+  export type ImageaddressCreateWithoutAddressInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -44214,7 +44214,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ImageAddressUncheckedCreateWithoutAddressInput = {
+  export type ImageaddressUncheckedCreateWithoutAddressInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -44223,13 +44223,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ImageAddressCreateOrConnectWithoutAddressInput = {
-    where: ImageAddressWhereUniqueInput
-    create: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput>
+  export type ImageaddressCreateOrConnectWithoutAddressInput = {
+    where: ImageaddressWhereUniqueInput
+    create: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput>
   }
 
-  export type ImageAddressCreateManyAddressInputEnvelope = {
-    data: ImageAddressCreateManyAddressInput | ImageAddressCreateManyAddressInput[]
+  export type ImageaddressCreateManyAddressInputEnvelope = {
+    data: ImageaddressCreateManyAddressInput | ImageaddressCreateManyAddressInput[]
     skipDuplicates?: boolean
   }
 
@@ -44351,33 +44351,33 @@ export namespace Prisma {
     create: XOR<EmployeeCreateWithoutAddressInput, EmployeeUncheckedCreateWithoutAddressInput>
   }
 
-  export type ImageAddressUpsertWithWhereUniqueWithoutAddressInput = {
-    where: ImageAddressWhereUniqueInput
-    update: XOR<ImageAddressUpdateWithoutAddressInput, ImageAddressUncheckedUpdateWithoutAddressInput>
-    create: XOR<ImageAddressCreateWithoutAddressInput, ImageAddressUncheckedCreateWithoutAddressInput>
+  export type ImageaddressUpsertWithWhereUniqueWithoutAddressInput = {
+    where: ImageaddressWhereUniqueInput
+    update: XOR<ImageaddressUpdateWithoutAddressInput, ImageaddressUncheckedUpdateWithoutAddressInput>
+    create: XOR<ImageaddressCreateWithoutAddressInput, ImageaddressUncheckedCreateWithoutAddressInput>
   }
 
-  export type ImageAddressUpdateWithWhereUniqueWithoutAddressInput = {
-    where: ImageAddressWhereUniqueInput
-    data: XOR<ImageAddressUpdateWithoutAddressInput, ImageAddressUncheckedUpdateWithoutAddressInput>
+  export type ImageaddressUpdateWithWhereUniqueWithoutAddressInput = {
+    where: ImageaddressWhereUniqueInput
+    data: XOR<ImageaddressUpdateWithoutAddressInput, ImageaddressUncheckedUpdateWithoutAddressInput>
   }
 
-  export type ImageAddressUpdateManyWithWhereWithoutAddressInput = {
-    where: ImageAddressScalarWhereInput
-    data: XOR<ImageAddressUpdateManyMutationInput, ImageAddressUncheckedUpdateManyWithoutAddressInput>
+  export type ImageaddressUpdateManyWithWhereWithoutAddressInput = {
+    where: ImageaddressScalarWhereInput
+    data: XOR<ImageaddressUpdateManyMutationInput, ImageaddressUncheckedUpdateManyWithoutAddressInput>
   }
 
-  export type ImageAddressScalarWhereInput = {
-    AND?: ImageAddressScalarWhereInput | ImageAddressScalarWhereInput[]
-    OR?: ImageAddressScalarWhereInput[]
-    NOT?: ImageAddressScalarWhereInput | ImageAddressScalarWhereInput[]
-    imageId?: UuidFilter<"ImageAddress"> | string
-    imageUrl?: StringFilter<"ImageAddress"> | string
-    imageType?: StringNullableFilter<"ImageAddress"> | string | null
-    addressId?: UuidFilter<"ImageAddress"> | string
-    status?: EnumStatusFilter<"ImageAddress"> | $Enums.Status
-    createdAt?: DateTimeFilter<"ImageAddress"> | Date | string
-    updatedAt?: DateTimeFilter<"ImageAddress"> | Date | string
+  export type ImageaddressScalarWhereInput = {
+    AND?: ImageaddressScalarWhereInput | ImageaddressScalarWhereInput[]
+    OR?: ImageaddressScalarWhereInput[]
+    NOT?: ImageaddressScalarWhereInput | ImageaddressScalarWhereInput[]
+    imageId?: UuidFilter<"Imageaddress"> | string
+    imageUrl?: StringFilter<"Imageaddress"> | string
+    imageType?: StringNullableFilter<"Imageaddress"> | string | null
+    addressId?: UuidFilter<"Imageaddress"> | string
+    status?: EnumStatusFilter<"Imageaddress"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Imageaddress"> | Date | string
+    updatedAt?: DateTimeFilter<"Imageaddress"> | Date | string
   }
 
   export type CityUpsertWithoutAddressesInput = {
@@ -45546,7 +45546,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressCreateNestedManyWithoutAddressInput
+    image?: ImageaddressCreateNestedManyWithoutAddressInput
     state: StateCreateNestedOneWithoutAddressesInput
     customer?: CustomerCreateNestedOneWithoutAddressInput
     employee?: EmployeeCreateNestedOneWithoutAddressInput
@@ -45564,7 +45564,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressUncheckedCreateNestedManyWithoutAddressInput
+    image?: ImageaddressUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutCityInput = {
@@ -45750,7 +45750,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressCreateNestedManyWithoutAddressInput
+    image?: ImageaddressCreateNestedManyWithoutAddressInput
     city: CityCreateNestedOneWithoutAddressesInput
     state: StateCreateNestedOneWithoutAddressesInput
     employee?: EmployeeCreateNestedOneWithoutAddressInput
@@ -45768,7 +45768,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressUncheckedCreateNestedManyWithoutAddressInput
+    image?: ImageaddressUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutCustomerInput = {
@@ -46298,7 +46298,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressCreateNestedManyWithoutAddressInput
+    image?: ImageaddressCreateNestedManyWithoutAddressInput
     city: CityCreateNestedOneWithoutAddressesInput
     state: StateCreateNestedOneWithoutAddressesInput
     customer?: CustomerCreateNestedOneWithoutAddressInput
@@ -46316,7 +46316,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressUncheckedCreateNestedManyWithoutAddressInput
+    image?: ImageaddressUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutEmployeeInput = {
@@ -48369,7 +48369,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressCreateNestedManyWithoutAddressInput
+    image?: ImageaddressCreateNestedManyWithoutAddressInput
     city: CityCreateNestedOneWithoutAddressesInput
     customer?: CustomerCreateNestedOneWithoutAddressInput
     employee?: EmployeeCreateNestedOneWithoutAddressInput
@@ -48387,7 +48387,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    image?: ImageAddressUncheckedCreateNestedManyWithoutAddressInput
+    image?: ImageaddressUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutStateInput = {
@@ -48849,7 +48849,7 @@ export namespace Prisma {
     data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type ImageAddressCreateManyAddressInput = {
+  export type ImageaddressCreateManyAddressInput = {
     imageId?: string
     imageUrl: string
     imageType?: string | null
@@ -48858,7 +48858,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ImageAddressUpdateWithoutAddressInput = {
+  export type ImageaddressUpdateWithoutAddressInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48867,7 +48867,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ImageAddressUncheckedUpdateWithoutAddressInput = {
+  export type ImageaddressUncheckedUpdateWithoutAddressInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48876,7 +48876,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ImageAddressUncheckedUpdateManyWithoutAddressInput = {
+  export type ImageaddressUncheckedUpdateManyWithoutAddressInput = {
     imageId?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     imageType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49171,7 +49171,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUpdateManyWithoutAddressNestedInput
     state?: StateUpdateOneRequiredWithoutAddressesNestedInput
     customer?: CustomerUpdateOneWithoutAddressNestedInput
     employee?: EmployeeUpdateOneWithoutAddressNestedInput
@@ -49189,7 +49189,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUncheckedUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateManyWithoutCityInput = {
@@ -49281,7 +49281,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUpdateManyWithoutAddressNestedInput
     city?: CityUpdateOneRequiredWithoutAddressesNestedInput
     state?: StateUpdateOneRequiredWithoutAddressesNestedInput
     employee?: EmployeeUpdateOneWithoutAddressNestedInput
@@ -49299,7 +49299,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUncheckedUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateManyWithoutCustomerInput = {
@@ -49505,7 +49505,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUpdateManyWithoutAddressNestedInput
     city?: CityUpdateOneRequiredWithoutAddressesNestedInput
     state?: StateUpdateOneRequiredWithoutAddressesNestedInput
     customer?: CustomerUpdateOneWithoutAddressNestedInput
@@ -49523,7 +49523,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUncheckedUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateManyWithoutEmployeeInput = {
@@ -50102,7 +50102,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUpdateManyWithoutAddressNestedInput
     city?: CityUpdateOneRequiredWithoutAddressesNestedInput
     customer?: CustomerUpdateOneWithoutAddressNestedInput
     employee?: EmployeeUpdateOneWithoutAddressNestedInput
@@ -50120,7 +50120,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: ImageAddressUncheckedUpdateManyWithoutAddressNestedInput
+    image?: ImageaddressUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateManyWithoutStateInput = {

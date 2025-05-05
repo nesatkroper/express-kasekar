@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
   previewFeatures = ["postgresqlExtensions"]
 }
 datasource db {
@@ -218,7 +217,7 @@ model Employeeinfo {
 
   employee Employee @relation(fields: [employeeId], references: [employeeId])
 }
-model ImageAddress {
+model Imageaddress {
   imageId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   imageUrl String
   imageType String?
