@@ -35,10 +35,8 @@ enum Status {
 }
 model Address {
   addressId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  cityId Int
-  stateId Int
-  country String?
-  location String?
+  cityId Int?
+  stateId Int?
   latitude Float?
   longitude Float?
   customerId String?  @unique  @db.Uuid
@@ -163,9 +161,10 @@ model Customerinfo{
   picture String?
   region String?
   email String? @unique
-  address String?
-  country String?
   note String?
+  govId  String?
+  govPicture  String?
+  govExpire DateTime?
   status Status @default(active)
   customer Customer @relation(fields: [customerId], references: [customerId])
 }
