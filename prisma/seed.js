@@ -7,42 +7,33 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Starting seed process...");
 
-  // console.log("Seeding states...");
-  // for (const state of STATE) {
-  //   await prisma.state.upsert({
-  //     where: { name: state.name },
-  //     update: {},
-  //     create: state,
-  //   });
-  //   console.log(`Created state: ${state.name}`);
-  // }
+  console.log("Seeding states...");
+  for (const state of STATE) {
+    await prisma.state.upsert({
+      where: { name: state.name },
+      update: {},
+      create: state,
+    });
+    console.log(`Created state: ${state.name}`);
+  }
 
-  // console.log("Seeding cities...");
-  // for (const city of CITY) {
-  //   const state = await prisma.state.findFirst({
-  //     where: { name: city.stateName },
-  //   });
-
-  //   if (!state) {
-  //     console.warn(`State not found for city: ${city.name}`);
-  //     continue;
-  //   }
-
-  //   await prisma.city.upsert({
-  //     where: {
-  //       name_stateId: {
-  //         name: city.name,
-  //         stateId: state.stateId,
-  //       },
-  //     },
-  //     update: {},
-  //     create: {
-  //       name: city.name,
-  //       stateId: state.stateId,
-  //     },
-  //   });
-  //   console.log(`Created city: ${city.name}`);
-  // }
+  console.log("Seeding cities...");
+  for (const city of CITY) {
+    await prisma.city.upsert({
+      where: {
+        name_stateId: {
+          name: city.name,
+          stateId: parseInt(city.stateId),
+        },
+      },
+      update: {},
+      create: {
+        name: city.name,
+        stateId: parseInt(city.stateId),
+      },
+    });
+    console.log(`Created city: ${city.name}`);
+  }
 
   console.log("Seeding roles with permissions...");
   for (const roleData of ROLE) {
