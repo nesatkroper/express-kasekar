@@ -51,6 +51,18 @@ const modelSchemas = {
     gender: "String",
     phone: "String",
     status: "String",
+    employeeId: "String",
+  },
+  customerinfo: {
+    customerId: "String",
+    picture: "String",
+    region: "String",
+    email: "String",
+    note: "String",
+    govId: "String",
+    povPicture: "String",
+    govExpire: "DateTime",
+    status: "String",
   },
   department: {
     departmentId: "String",

@@ -57,15 +57,15 @@ async function main() {
   }
 
   await prisma.auth.upsert({
-    where: { email: "admin@nun.com" },
+    where: { email: "superadmin@nun.com" },
     update: {},
     create: {
-      email: "admin@nun.com",
+      email: "superadmin@nun.com",
       password: await bcrypt.hash("123456", 10),
       roleId: adminRole.roleId,
     },
   });
-  console.log("Admin user created: admin@nun.com");
+  console.log("Admin user created: superadmin@nun.com");
 
   console.log("✅ Seed completed successfully!");
 }

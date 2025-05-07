@@ -38,10 +38,11 @@ const select = async (req, res) => {
 };
 
 const create = async (req, res) => {
+  if (!req.body.firstName) {
+    return res.status(400).json({ error: "First name is required" });
+  }
   try {
-    const data = { ...req.body };
-
-    const result = await baseCreate(model, data);
+    const result = await baseCreate(model, req.body);
     await invalidate(`${model}:*`);
     return res.status(201).json(result);
   } catch (err) {

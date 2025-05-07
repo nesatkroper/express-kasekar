@@ -19,10 +19,8 @@ CREATE TYPE "Status" AS ENUM ('active', 'inactive');
 -- CreateTable
 CREATE TABLE "Address" (
     "addressId" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "cityId" INTEGER NOT NULL,
-    "stateId" INTEGER NOT NULL,
-    "country" TEXT,
-    "location" TEXT,
+    "cityId" INTEGER,
+    "stateId" INTEGER,
     "latitude" DOUBLE PRECISION,
     "longitude" DOUBLE PRECISION,
     "customerId" UUID,
@@ -144,9 +142,10 @@ CREATE TABLE "Customerinfo" (
     "picture" TEXT,
     "region" TEXT,
     "email" TEXT,
-    "address" TEXT,
-    "country" TEXT,
     "note" TEXT,
+    "govId" TEXT,
+    "govPicture" TEXT,
+    "govExpire" TIMESTAMP(3),
     "status" "Status" NOT NULL DEFAULT 'active'
 );
 
@@ -194,7 +193,7 @@ CREATE TABLE "Employeeinfo" (
 );
 
 -- CreateTable
-CREATE TABLE "ImageAddress" (
+CREATE TABLE "Imageaddress" (
     "imageId" UUID NOT NULL DEFAULT gen_random_uuid(),
     "imageUrl" TEXT NOT NULL,
     "imageType" TEXT,
@@ -203,7 +202,7 @@ CREATE TABLE "ImageAddress" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "ImageAddress_pkey" PRIMARY KEY ("imageId")
+    CONSTRAINT "Imageaddress_pkey" PRIMARY KEY ("imageId")
 );
 
 -- CreateTable
@@ -253,19 +252,6 @@ CREATE TABLE "Payment" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("paymentId")
-);
-
--- CreateTable
-CREATE TABLE "Permission" (
-    "permissionId" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "name" TEXT NOT NULL,
-    "description" TEXT,
-    "category" TEXT NOT NULL,
-    "status" "Status" NOT NULL DEFAULT 'active',
-    "roleId" UUID NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Permission_pkey" PRIMARY KEY ("permissionId")
 );
 
 -- CreateTable
@@ -454,12 +440,6 @@ CREATE UNIQUE INDEX "Employeeinfo_employeeId_key" ON "Employeeinfo"("employeeId"
 CREATE UNIQUE INDEX "Employeeinfo_email_key" ON "Employeeinfo"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Permission_name_key" ON "Permission"("name");
-
--- CreateIndex
-CREATE INDEX "Permission_name_idx" ON "Permission"("name");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
 
 -- CreateIndex
@@ -487,10 +467,10 @@ CREATE UNIQUE INDEX "User_customerId_key" ON "User"("customerId");
 CREATE INDEX "User_email_idx" ON "User"("email");
 
 -- AddForeignKey
-ALTER TABLE "Address" ADD CONSTRAINT "Address_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("cityId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Address" ADD CONSTRAINT "Address_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("cityId") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Address" ADD CONSTRAINT "Address_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Address" ADD CONSTRAINT "Address_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("stateId") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Address" ADD CONSTRAINT "Address_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("customerId") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -541,7 +521,7 @@ ALTER TABLE "Employee" ADD CONSTRAINT "Employee_departmentId_fkey" FOREIGN KEY (
 ALTER TABLE "Employeeinfo" ADD CONSTRAINT "Employeeinfo_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ImageAddress" ADD CONSTRAINT "ImageAddress_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "Address"("addressId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Imageaddress" ADD CONSTRAINT "Imageaddress_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "Address"("addressId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Notification" ADD CONSTRAINT "Notification_authId_fkey" FOREIGN KEY ("authId") REFERENCES "Auth"("authId") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -554,9 +534,6 @@ ALTER TABLE "Payment" ADD CONSTRAINT "Payment_saleId_fkey" FOREIGN KEY ("saleId"
 
 -- AddForeignKey
 ALTER TABLE "Payment" ADD CONSTRAINT "Payment_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Permission" ADD CONSTRAINT "Permission_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("roleId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Position" ADD CONSTRAINT "Position_departmentId_fkey" FOREIGN KEY ("departmentId") REFERENCES "Department"("departmentId") ON DELETE RESTRICT ON UPDATE CASCADE;
