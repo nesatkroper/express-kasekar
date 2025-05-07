@@ -8,7 +8,9 @@ const {
   update,
   destroy,
 } = require("@/controllers/city-controller");
+const { exportCity } = require("@/services/excel/city-excel");
 
+router.get("/exp", exportCity);
 router.get("/:id?", select);
 router.post("/", create);
 router.put("/:id", update);
