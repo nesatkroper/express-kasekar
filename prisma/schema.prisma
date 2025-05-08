@@ -334,7 +334,6 @@ model Role {
 model Sale {
   saleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId String @db.Uuid
-  roomId String @db.Uuid
   customerId String @db.Uuid
   saleDate DateTime @default(now())
   amount Decimal @db.Decimal(12,2)
@@ -347,6 +346,9 @@ model Sale {
   customer Customer? @relation(fields: [customerId], references: [customerId])
   saledetails Saledetail[]
   payment Payment[]
+
+  @@index([employeeId])
+  @@index([customerId])
 }
 model Saledetail {
   saledetailId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -360,6 +362,9 @@ model Saledetail {
 
   sale Sale @relation(fields: [saleId], references: [saleId])
   product Product @relation(fields: [productId], references: [productId])
+
+  @@index([saleId])
+  @@index([productId])
 }
 model State {
   stateId  Int     @id @default(autoincrement())
