@@ -113,6 +113,7 @@ model Cart {
   auth Auth? @relation(fields: [authId], references: [authId])
   user User? @relation(fields: [userId], references: [userId])
   note Cartnote[]
+  @@unique([authId, productId], name: "authId_productId")
 }
 model Cartnote {
   cartnoteId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid

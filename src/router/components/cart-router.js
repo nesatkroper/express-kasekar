@@ -14,7 +14,7 @@ const { exportExcel } = require("@/controllers/cart-excel");
 
 router.get("/re", refresh);
 router.get("/export", exportExcel);
-router.get("/:id?", select);
+router.get("/:id", select);
 router.post("/", create);
 router.put("/inc/:cartId", qtyIncrease);
 router.put("/dec/:cartId", qtyDecrease);
