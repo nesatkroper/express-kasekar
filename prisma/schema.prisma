@@ -309,6 +309,7 @@ model Product {
   stocks Stock[]
   saledetails Saledetail[]
   cart Cart[]
+  movement  Stockmovement[]
 }
 model Stock {
   stockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -322,6 +323,7 @@ model Stock {
   updatedAt DateTime @updatedAt
   product Product? @relation(fields: [productId], references: [productId])
   supplier Supplier? @relation(fields: [supplierId], references: [supplierId])
+  entry  Stockentry[]
 
   @@index([productId])
   @@index([supplierId])
@@ -413,7 +415,7 @@ model Supplier {
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  stocks Productstock[]
+  stocks Stock[]
 }
 model Token {
   tokenId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
