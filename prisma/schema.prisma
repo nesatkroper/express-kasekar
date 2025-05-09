@@ -33,6 +33,10 @@ enum Status {
   active 
   inactive 
 }
+enum StockType {
+  in
+  out
+}
 model Address {
   addressId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   cityId Int?
@@ -302,24 +306,48 @@ model Product {
   updatedAt DateTime @updatedAt
 
   category Category? @relation(fields: [categoryId], references: [categoryId])
-  stocks Productstock[]
+  stocks Stock[]
   saledetails Saledetail[]
   cart Cart[]
 }
-model Productstock {
-  productstockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Stock {
+  stockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   productId String @db.Uuid
-  supplierId String @db.Uuid
+  supplierId String? @db.Uuid
   invNumber String?
   productAdd Int @default(0)
-  addPrice Decimal @db.Decimal(12,2) @default(0.00)
-  addDate DateTime?
   memo String?
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   product Product? @relation(fields: [productId], references: [productId])
   supplier Supplier? @relation(fields: [supplierId], references: [supplierId])
+
+  @@index([productId])
+  @@index([supplierId])
+}
+model Stockentry {
+  entryId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stockId String @db.Uuid
+  quantity Int
+  memo String?
+  status Status @default(active)  
+  entryPrice Decimal @db.Decimal(12,2) @default(0.00)
+  entryDate DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stock Stock? @relation(fields: [stockId], references: [stockId])
+  @@index([stockId])
+}
+model Stockmovement {
+  movementId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  productId    String     @db.Uuid
+  quantity     Int
+  type         StockType
+  referenceId  String?
+  createdAt    DateTime   @default(now())
+  product      Product    @relation(fields: [productId], references: [productId])
 }
 model Role {
   roleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -337,8 +365,9 @@ model Sale {
   customerId String @db.Uuid
   saleDate DateTime @default(now())
   amount Decimal @db.Decimal(12,2)
-  status Status @default(active)
   picture  String?
+  memo    String?
+  status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -356,6 +385,7 @@ model Saledetail {
   productId String @db.Uuid
   quantity Int
   amount Decimal @db.Decimal(12,2)
+  memo  String?
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
