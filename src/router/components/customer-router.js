@@ -13,10 +13,12 @@ const {
   createinfo,
   selectinfo,
   updateinfo,
+  clientSelect,
 } = require("@/controllers/customer-controller");
 
 router.get("/re", refresh);
 router.get("/info/:id", selectinfo);
+router.get("/client/:id", clientSelect);
 router.get("/:id?", select);
 router.post("/info", upload.single("picture"), createinfo);
 router.post("/", create);

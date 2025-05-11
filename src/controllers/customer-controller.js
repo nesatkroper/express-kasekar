@@ -1,5 +1,10 @@
 const path = require("path");
-const { invalidate } = require("@/utils/base-redis");
+const {
+  invalidate,
+  generateCacheKey,
+  getCached,
+  setCached,
+} = require("@/utils/base-redis");
 const { uploadPath } = require("@/provider/upload-path");
 
 const {
@@ -30,6 +35,39 @@ const select = async (req, res) => {
     if (!result || (Array.isArray(result) && !result.length))
       return res.status(404).json({ msg: "No data found" });
 
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error("Error:", err);
+    return res.status(500).json({ error: `Error: ${err.message}` });
+  }
+};
+
+const clientSelect = async (req, res) => {
+  try {
+    const cacheKey = generateCacheKey(model, { id: req.params.id });
+    const cachedData = await getCached(cacheKey);
+    if (cachedData) {
+      console.log(`✅ Serving ${model} from cache`);
+      return res.status(200).json(cachedData);
+    }
+    const result = await prisma[model].findMany({
+      where: {
+        employeeId: req.params.id,
+      },
+      include: {
+        info: true,
+        address: {
+          include: {
+            image: true,
+          },
+        },
+      },
+    });
+
+    if (!result || (Array.isArray(result) && !result.length))
+      return res.status(404).json({ msg: "No data found" });
+
+    await setCached(cacheKey, result);
     return res.status(200).json(result);
   } catch (err) {
     console.error("Error:", err);
@@ -156,6 +194,7 @@ const updateinfo = async (req, res) => {
 module.exports = {
   refresh,
   select,
+  clientSelect,
   create,
   update,
   patch,
