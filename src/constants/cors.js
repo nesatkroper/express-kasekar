@@ -3,7 +3,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://74.50.67.162",
   "http://74.50.67.162:3100",
-  "https://74.50.67.162:3100",
+  "http://74.50.67.162:4100",
 ];
 
 const allowedHeaders = [
