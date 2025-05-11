@@ -20,6 +20,7 @@ const {
   allowedHeaders,
   methods,
   transports,
+  exposedHeaders,
 } = require("@/constants/cors");
 
 const dbLogger = require("@/middleware/logger-middleware");
@@ -55,45 +56,45 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin || allowedOrigins.includes(origin)) callback(null, true);
-//       else callback(new Error("Not allowed by CORS"));
-//     },
-//     methods,
-//     allowedHeaders,
-//     credentials: true,
-//   })
-// );
-
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-
-      if (
-        allowedOrigins.some(
-          (allowedOrigin) =>
-            origin === allowedOrigin ||
-            origin.startsWith(allowedOrigin.replace(/^https?:\/\//, ""))
-        )
-      ) {
-        return callback(null, true);
-      }
-
-      const msg = `CORS policy: ${origin} not allowed`;
-      return callback(new Error(msg), false);
+      if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+      else callback(new Error("Not allowed by CORS"));
     },
-    methods: methods.join(","),
-    allowedHeaders: allowedHeaders.join(","),
-    exposedHeaders: exposedHeaders.join(","),
+    methods,
+    allowedHeaders,
     credentials: true,
-    maxAge: 86400, // 24 hours
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) return callback(null, true);
+
+//       if (
+//         allowedOrigins.some(
+//           (allowedOrigin) =>
+//             origin === allowedOrigin ||
+//             origin.startsWith(allowedOrigin.replace(/^https?:\/\//, ""))
+//         )
+//       ) {
+//         return callback(null, true);
+//       }
+
+//       const msg = `CORS policy: ${origin} not allowed`;
+//       return callback(new Error(msg), false);
+//     },
+//     methods: methods.join(","),
+//     allowedHeaders: allowedHeaders.join(","),
+//     exposedHeaders: exposedHeaders.join(","),
+//     credentials: true,
+//     maxAge: 86400, // 24 hours
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204,
+//   })
+// );
 
 app.use(
   "/uploads",
