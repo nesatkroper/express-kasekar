@@ -1,4 +1,9 @@
-const allowedOrigins = ["http://localhost:5173", "http://81.181.87.112"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://74.50.67.162",
+  "http://74.50.67.162:3100",
+  "https://74.50.67.162:3100",
+];
 
 const allowedHeaders = [
   "Origin",
@@ -6,10 +11,24 @@ const allowedHeaders = [
   "Content-Type",
   "Accept",
   "Authorization",
+  "X-Access-Token",
 ];
 
-const methods = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"];
+const exposedHeaders = [
+  "Content-Length",
+  "Content-Type",
+  "ETag",
+  "Last-Modified",
+];
+
+const methods = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"];
 
 const transports = ["websocket", "polling"];
 
-module.exports = { allowedOrigins, allowedHeaders, methods, transports };
+module.exports = {
+  allowedOrigins,
+  allowedHeaders,
+  methods,
+  transports,
+  exposedHeaders,
+};

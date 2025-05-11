@@ -311,28 +311,25 @@ model Product {
   saledetails Saledetail[]
   cart Cart[]
   movement  Stockmovement[]
+  entry Stockentry[]
 }
 model Stock {
   stockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   productId String @db.Uuid
-  supplierId String? @db.Uuid
-  invNumber String?
-  productAdd Int @default(0)
+  quantity Int @default(0)
   memo String?
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   product Product? @relation(fields: [productId], references: [productId])
-  supplier Supplier? @relation(fields: [supplierId], references: [supplierId])
-  entry  Stockentry[]
 
   @@index([productId])
-  @@index([supplierId])
 }
 model Stockentry {
   entryId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  stockId String @db.Uuid
-  quantity Int
+  productId  String  @db.Uuid
+  quantity Int  @default(0)
+  supplierId  String @db.Uuid
   memo String?
   status Status @default(active)  
   entryPrice Decimal @db.Decimal(12,2) @default(0.00)
@@ -340,8 +337,11 @@ model Stockentry {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  stock Stock? @relation(fields: [stockId], references: [stockId])
-  @@index([stockId])
+  product Product? @relation(fields: [productId], references: [productId])
+  supplier  Supplier @relation(fields: [supplierId], references: [supplierId])
+
+  @@index([productId])
+  @@index([supplierId])
 }
 model Stockmovement {
   movementId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -416,7 +416,7 @@ model Supplier {
   status Status @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  stocks Stock[]
+  entry Stockentry[]
 }
 model Token {
   tokenId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
