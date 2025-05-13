@@ -310,7 +310,6 @@ model Product {
   stocks Stock[]
   saledetails Saledetail[]
   cart Cart[]
-  movement  Stockmovement[]
   entry Stockentry[]
 }
 model Stock {
@@ -342,15 +341,6 @@ model Stockentry {
 
   @@index([productId])
   @@index([supplierId])
-}
-model Stockmovement {
-  movementId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  productId    String     @db.Uuid
-  quantity     Int
-  type         StockType
-  referenceId  String?
-  createdAt    DateTime   @default(now())
-  product      Product    @relation(fields: [productId], references: [productId])
 }
 model Role {
   roleId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid

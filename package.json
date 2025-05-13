@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon index.js",
-    "migrate": "npx prisma migrate dev --name add-memo2sale",
+    "migrate": "npx prisma migrate dev --name drop-stockmovement",
     "dbpush": "npx prisma db push",
     "generate": "npx prisma generate",
     "seed": "npx prisma db seed",
