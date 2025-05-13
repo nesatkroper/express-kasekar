@@ -180,10 +180,11 @@ const modelSchemas = {
   sale: {
     saleId: "String",
     employeeId: "String",
-    roomId: "String",
     customerId: "String",
     saleDate: "Date",
     amount: "Decimal",
+    picture: "String",
+    memo: "String",
     status: "String",
   },
   saleDetail: {

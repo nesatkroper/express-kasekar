@@ -314,7 +314,7 @@ model Product {
 }
 model Stock {
   stockId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  productId String @db.Uuid
+  productId String @db.Uuid  @unique
   quantity Int @default(0)
   memo String?
   status Status @default(active)

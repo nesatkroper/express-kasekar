@@ -7,7 +7,6 @@ const {
   basePatch,
   baseDestroy,
 } = require("../utils");
-const { data } = require("@/middleware/app-logger-middleware");
 
 const model = "sale";
 
@@ -17,7 +16,7 @@ const select = async (req, res) => {
       model,
       req.params.id,
       req.query,
-      `${model}_id`
+      `${model}Id`
     );
 
     if (!result || (Array.isArray(result) && !result.length)) {
@@ -34,7 +33,8 @@ const create = async (req, res) => {
   await prisma.$transaction(async (tx) => {
     try {
       const picture = req.file ? path.basename(req.file.path) : null;
-      const { employeeId, customerId, saleDate, amount, memo, cartItems } = req.body;
+      const { employeeId, customerId, saleDate, amount, memo, cartItems } =
+        req.body;
 
       const sale = await tx.sale.create({
         data: {
@@ -44,8 +44,8 @@ const create = async (req, res) => {
           amount,
           memo,
           picture,
-          status: "active"
-        }
+          status: "active",
+        },
       });
 
       for (const item of cartItems) {
@@ -56,43 +56,46 @@ const create = async (req, res) => {
             quantity: item.quantity,
             amount: item.amount,
             memo: item.memo,
-            status: "active"
-          }
+            status: "active",
+          },
         });
 
         await tx.stock.update({
           where: {
-            productId: item.productId
+            productId: item.productId,
           },
           data: {
             quantity: {
-              decrement: item.quantity
+              decrement: item.quantity,
             },
             memo: "Sale",
-            status: "active"
-          }
+            status: "active",
+          },
         });
+      }
 
-      };
+      // await tx.payment.create({
+      //   data: {
+      //     employeeId,
+      //     saleId: sale.saleId,
+      //     invoice,
+      //     hash,
+      //     fromAccountId,
+      //     toAccountId,
+      //     currency,
+      //     amount,
+      //     externalRef,
+      //     status: "active",
+      //   },
+      // });
 
-
+      return res.status(201).json(sale);
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      return res.status(500).json({ error: `Error :${err}` });
     }
   });
-}
-
-// const create = async (req, res) => {
-//   try {
-//     const data = { ...req.body };
-
-//     const result = await baseCreate(model, data);
-//     return res.status(201).json(result);
-//   } catch (err) {
-//     console.error(`Error creating ${model}:`, err);
-//     return res.status(500).json({ error: `Error :${err}` });
-//   }
-// };
+};
 
 const update = async (req, res) => {
   try {
