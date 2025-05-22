@@ -14,7 +14,7 @@ const {
   basePatch,
   baseDestroy,
 } = require("../utils");
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 
 const model = "customer";
 

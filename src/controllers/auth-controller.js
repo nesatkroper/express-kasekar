@@ -1,10 +1,10 @@
 const { data } = require("@/middleware/app-logger-middleware");
-const prismaClient = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const cleanExpiredTokens = async () => {
-  await prismaClient.token.deleteMany({
+  await prisma.token.deleteMany({
     where: {
       expiresAt: {
         lt: new Date(),
@@ -26,7 +26,7 @@ const generateToken = async (auth, req) => {
   const expiresAt = new Date();
   expiresAt.setHours(expiresAt.getHours() + 12);
 
-  await prismaClient.token.create({
+  await prisma.token.create({
     data: {
       token,
       expiresAt,
@@ -46,7 +46,7 @@ const register = async (req, res) => {
     if (typeof role !== "string")
       return res.status(400).json({ err: "Role must be a String." });
 
-    const existingAuth = await prismaClient.auth.findUnique({
+    const existingAuth = await prisma.auth.findUnique({
       where: { email },
     });
     if (existingAuth) {
@@ -55,14 +55,14 @@ const register = async (req, res) => {
 
     const hashedPass = await bcrypt.hash(password, 10);
 
-    const authRole = await prismaClient.role.findUnique({
+    const authRole = await prisma.role.findUnique({
       where: { name: String(role) },
     });
 
     if (!authRole)
       return res.status(400).json({ error: "Role does not exist" });
 
-    const newAuth = await prismaClient.auth.create({
+    const newAuth = await prisma.auth.create({
       data: {
         email,
         password: hashedPass,
@@ -99,7 +99,7 @@ const login = async (req, res) => {
       return res.status(400).json({ error: "Email is required." });
     }
 
-    const auth = await prismaClient.auth.findUnique({
+    const auth = await prisma.auth.findUnique({
       where: { email },
       include: {
         role: true,
@@ -133,7 +133,7 @@ const logout = async (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
     if (token) {
-      await prismaClient.token.deleteMany({
+      await prisma.token.deleteMany({
         where: { token },
       });
     }
@@ -151,7 +151,7 @@ const editRole = async (req, res) => {
   try {
     const { id } = req.params;
     const { roleId } = req.body;
-    const result = await prismaClient.auth.update({
+    const result = await prisma.auth.update({
       where: { authId: id },
       data: {
         role: roleId,
@@ -162,7 +162,7 @@ const editRole = async (req, res) => {
 
 const getAllAuth = async (req, res) => {
   try {
-    const auths = await prismaClient.auth.findMany({
+    const auths = await prisma.auth.findMany({
       include: { role: true, employee: true },
     });
     return res.status(200).json(auths);
@@ -174,7 +174,7 @@ const getAllAuth = async (req, res) => {
 
 const getAuth = async (req, res) => {
   try {
-    const auth = await prismaClient.auth.findUnique({
+    const auth = await prisma.auth.findUnique({
       where: { authId: req.auth.authId },
       include: {
         role: true,

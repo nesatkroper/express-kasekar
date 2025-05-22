@@ -18,7 +18,7 @@ const {
 const { exportEmployeesExcel } = require("@/services/excel/employee-excel");
 
 router.get("/re", refresh);
-router.get('/exp', exportEmployeesExcel);
+router.get("/exp", exportEmployeesExcel);
 router.get("/:id?", select);
 router.post("/", create);
 router.put("/:id", update);
