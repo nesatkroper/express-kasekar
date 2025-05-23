@@ -193,6 +193,9 @@ model Employee {
   info         Employeeinfo?
   payment      Payment[]
   sales        Sale[]
+  leaveRequests LeaveRequest[] @relation("Requester")
+  approvedLeaves LeaveRequest[] @relation("Approver")
+
 }
 
 model Employeeinfo {
@@ -230,6 +233,26 @@ model Imageaddress {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   address   Address  @relation(fields: [addressId], references: [addressId])
+}
+
+model LeaveRequest {
+  leaveId       String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  employeeId    String     @db.Uuid
+  leaveType     LeaveType
+  startDate     DateTime
+  endDate       DateTime
+  reason        String?
+  status        LeaveStatus @default(pending)
+  approvedById  String?    @db.Uuid
+  approvedAt    DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  
+  employee      Employee   @relation("Requester", fields: [employeeId], references: [employeeId])
+  approvedBy    Employee?  @relation("Approver", fields: [approvedById], references: [employeeId])
+
+  @@index([employeeId])
+  @@index([status])
 }
 
 model Log {
@@ -478,4 +501,26 @@ enum Status {
 enum StockType {
   in
   out
+}
+
+enum LeaveType {
+  annual
+  sick
+  maternity
+  paternity
+  unpaid
+  other
+}
+
+enum LeaveStatus {
+  pending
+  approved
+  rejected
+  cancelled
+}
+
+enum CheckStatus {
+  checkin
+  checkout
+  absent
 }
