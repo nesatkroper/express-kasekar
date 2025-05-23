@@ -314,9 +314,9 @@ model Stockentry {
   updatedAt  DateTime  @updatedAt
   productId  String    @db.Uuid
   supplierId String    @db.Uuid
+  invoice    String?
   product    Product   @relation(fields: [productId], references: [productId])
   supplier   Supplier  @relation(fields: [supplierId], references: [supplierId])
-  invoice    String?
 
   @@index([productId])
   @@index([supplierId])
@@ -341,10 +341,10 @@ model Sale {
   saleDate    DateTime     @default(now())
   amount      Decimal      @db.Decimal(12, 2)
   status      Status       @default(active)
-  invoice     String?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   memo        String?
+  invoice     String?
   payment     Payment[]
   customer    Customer     @relation(fields: [customerId], references: [customerId])
   employee    Employee     @relation(fields: [employeeId], references: [employeeId])
@@ -458,4 +458,3 @@ enum StockType {
   in
   out
 }
-
