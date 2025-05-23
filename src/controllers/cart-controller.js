@@ -1,4 +1,4 @@
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const { baseCreate } = require("@/utils");
 const { invalidate } = require("@/utils/base-redis");
 const model = "cart";

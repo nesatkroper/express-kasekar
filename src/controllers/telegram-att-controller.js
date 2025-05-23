@@ -1,5 +1,5 @@
 const axios = require("axios");
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const { DateTime } = require("luxon");
 
 const sendAttendance = async (req, res) => {

@@ -1,6 +1,6 @@
 const ExcelJS = require("exceljs");
 const path = require("path");
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const fs = require("fs");
 
 const exportLogsExcel = async (req, res) => {

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 
 module.exports = async (req, res, next) => {
   try {

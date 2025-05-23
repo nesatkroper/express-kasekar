@@ -1,4 +1,4 @@
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const { baseSelect } = require("../utils");
 
 const select = async (req, res) => {

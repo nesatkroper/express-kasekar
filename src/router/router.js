@@ -2,7 +2,7 @@ const express = require("express");
 const expressListEndpoints = require("express-list-endpoints");
 const router = express.Router();
 const routers = require("@/router/export-router");
-const prisma = require("@/provider/client");
+const prisma = require("@/lib/prisma");
 const { baseSelect } = require("@/utils");
 
 Object.entries(routers).forEach(([routeName, routeHandler]) => {
