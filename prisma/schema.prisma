@@ -17,22 +17,30 @@ model Address {
   longitude  Float?
   customerId String?        @unique @db.Uuid
   employeeId String?        @unique @db.Uuid
-  status     Status         @default(active)
-  createdAt  DateTime       @default(now())
-  updatedAt  DateTime       @updatedAt
+  eventId    String?        @unique @db.Uuid
+  event      Event?         @relation(fields: [eventId], references: [eventId])
   city       City?          @relation(fields: [cityId], references: [cityId])
   customer   Customer?      @relation(fields: [customerId], references: [customerId])
   employee   Employee?      @relation(fields: [employeeId], references: [employeeId])
   state      State?         @relation(fields: [stateId], references: [stateId])
+  status     Status         @default(active)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
   image      Imageaddress[]
 }
 
 model Attendance {
   attendanceId String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId   String   @db.Uuid
-  datetime     DateTime @default(now())
+  eventId      String   @db.Uuid
+  checkIn      DateTime @default(now())
+  checkOut     DateTime?
+  method       String?
   note         String?
   status       Status   @default(active)
+  createdAt    DateTime @default(now())
+  datetime     DateTime @default(now())
+  event        Event    @relation(fields: [eventId], references: [eventId])
   employee     Employee @relation(fields: [employeeId], references: [employeeId])
 }
 
@@ -198,6 +206,19 @@ model Employeeinfo {
   govId      String?
   govPicture String?
   employee   Employee  @relation(fields: [employeeId], references: [employeeId])
+}
+
+model Event {
+  eventId   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eventName String
+  memo      String?
+  startDate DateTime
+  endDate   DateTime
+  status    Status   @default(active)
+  address   Address[]
+  attendance Attendance[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Imageaddress {

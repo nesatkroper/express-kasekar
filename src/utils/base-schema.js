@@ -2,8 +2,12 @@ const modelSchemas = {
   attendace: {
     attendaceId: "String",
     employeeId: "String",
-    datetime: "Date",
+    eventId: "String",
+    checkIn: "DateTime",
+    checkOut: "DateTime",
+    method: "String",
     note: "String",
+    status: "Status",
   },
   auth: {
     authId: "String",
