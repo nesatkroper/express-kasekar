@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon index.js",
-    "migrate": "npx prisma migrate dev --name add-leaverequest",
+    "migrate": "npx prisma migrate dev --name mod-index",
     "dbpush": "npx prisma db push",
     "generate": "npx prisma generate",
     "seed": "npx prisma db seed",
@@ -53,10 +53,10 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@prisma/client": "^6.7.0",
+    "@prisma/client": "^6.8.2",
     "globals": "^16.0.0",
     "nodemon": "^3.1.7",
-    "prisma": "^6.7.0"
+    "prisma": "^6.8.2"
   },
   "_moduleAliases": {
     "@": "./src",
@@ -66,4 +66,3 @@
     "@router": "./src/router"
   }
 }
-

@@ -1,7 +1,17 @@
 const express = require("express");
-const { RequestQR } = require("@/controllers/khqr-controller");
+const {
+  RequestQR,
+  refresh,
+  select,
+  create,
+  update,
+} = require("@/controllers/khqr-controller");
 const router = express.Router();
 
-router.post("/", RequestQR);
+router.get("/", select);
+router.get("/re", refresh);
+router.post("/", create);
+router.post("/re", RequestQR);
+router.put("/:id", update);
 
 module.exports = router;

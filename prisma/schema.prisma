@@ -17,31 +17,40 @@ model Address {
   longitude  Float?
   customerId String?        @unique @db.Uuid
   employeeId String?        @unique @db.Uuid
-  eventId    String?        @unique @db.Uuid
-  event      Event?         @relation(fields: [eventId], references: [eventId])
-  city       City?          @relation(fields: [cityId], references: [cityId])
-  customer   Customer?      @relation(fields: [customerId], references: [customerId])
-  employee   Employee?      @relation(fields: [employeeId], references: [employeeId])
-  state      State?         @relation(fields: [stateId], references: [stateId])
   status     Status         @default(active)
   createdAt  DateTime       @default(now())
   updatedAt  DateTime       @updatedAt
+  eventId    String?        @unique @db.Uuid
+  city       City?          @relation(fields: [cityId], references: [cityId])
+  customer   Customer?      @relation(fields: [customerId], references: [customerId])
+  employee   Employee?      @relation(fields: [employeeId], references: [employeeId])
+  event      Event?         @relation(fields: [eventId], references: [eventId])
+  state      State?         @relation(fields: [stateId], references: [stateId])
   image      Imageaddress[]
+
+  @@index([cityId])
+  @@index([stateId])
+  @@index([customerId])
+  @@index([employeeId])
+  @@index([eventId])
 }
 
-model Attendance {
-  attendanceId String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  employeeId   String   @db.Uuid
-  eventId      String   @db.Uuid
-  checkIn      DateTime @default(now())
-  checkOut     DateTime?
-  method       String?
+model Attendance { 
+  attendanceId String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  employeeId   String    @db.Uuid
+  datetime     DateTime  @default(now())
   note         String?
-  status       Status   @default(active)
-  createdAt    DateTime @default(now())
-  datetime     DateTime @default(now())
-  event        Event    @relation(fields: [eventId], references: [eventId])
-  employee     Employee @relation(fields: [employeeId], references: [employeeId])
+  status       Status    @default(active)
+  checkIn      DateTime  @default(now())
+  checkOut     DateTime?
+  createdAt    DateTime  @default(now())
+  eventId      String    @db.Uuid
+  method       String?
+  employee     Employee  @relation(fields: [employeeId], references: [employeeId])
+  event        Event     @relation(fields: [eventId], references: [eventId])
+
+  @@index([employeeId])
+  @@index([eventId])
 }
 
 model Auth {
@@ -78,6 +87,8 @@ model AuthLog {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   auth         Auth     @relation(fields: [authId], references: [authId])
+
+  @@index([authId])
 }
 
 model Cart {
@@ -103,6 +114,8 @@ model Cartnote {
   note       String
   status     Status @default(active)
   cart       Cart   @relation(fields: [cartId], references: [cartId])
+
+  @@index([cartId])
 }
 
 model Category {
@@ -142,6 +155,8 @@ model Customer {
   info       Customerinfo?
   sales      Sale[]
   user       User?
+
+  @@index([employeeId])
 }
 
 model Customerinfo {
@@ -170,31 +185,35 @@ model Department {
 }
 
 model Employee {
-  employeeId   String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  employeeCode String?       @unique
-  firstName    String
-  lastName     String
-  gender       Gender        @default(male)
-  dob          DateTime?
-  phone        String?       @unique
-  positionId   String        @db.Uuid
-  departmentId String        @db.Uuid
-  salary       Decimal       @db.Decimal(10, 2)
-  hiredDate    DateTime?
-  status       Status        @default(active)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  address      Address?
-  attendances  Attendance[]
-  auth         Auth?
-  customer     Customer[]
-  department   Department    @relation(fields: [departmentId], references: [departmentId])
-  position     Position      @relation(fields: [positionId], references: [positionId])
-  info         Employeeinfo?
-  payment      Payment[]
-  sales        Sale[]
-  leaveRequests LeaveRequest[] @relation("Requester")
+  employeeId     String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  employeeCode   String?        @unique
+  firstName      String
+  lastName       String
+  gender         Gender         @default(male)
+  dob            DateTime?
+  phone          String?        @unique
+  positionId     String         @db.Uuid
+  departmentId   String         @db.Uuid
+  salary         Decimal        @db.Decimal(10, 2)
+  hiredDate      DateTime?
+  status         Status         @default(active)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  address        Address?
+  attendances    Attendance[]
+  auth           Auth?
+  customer       Customer[]
+  department     Department     @relation(fields: [departmentId], references: [departmentId])
+  position       Position       @relation(fields: [positionId], references: [positionId])
+  info           Employeeinfo?
   approvedLeaves LeaveRequest[] @relation("Approver")
+  leaveRequests  LeaveRequest[] @relation("Requester")
+  payment        Payment[]
+  sales          Sale[]
+
+  @@index([employeeCode])
+  @@index([departmentId])
+  @@index([positionId])
 
 }
 
@@ -212,16 +231,16 @@ model Employeeinfo {
 }
 
 model Event {
-  eventId   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  eventName String
-  memo      String?
-  startDate DateTime
-  endDate   DateTime
-  status    Status   @default(active)
-  address   Address[]
+  eventId    String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eventName  String
+  memo       String?
+  startDate  DateTime
+  endDate    DateTime
+  status     Status       @default(active)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  address    Address?
   attendance Attendance[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Imageaddress {
@@ -233,23 +252,37 @@ model Imageaddress {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   address   Address  @relation(fields: [addressId], references: [addressId])
+
+  @@index([addressId])
+}
+
+model Khqr {
+  khqrId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  account   String   @unique @default("suon_phanun@aclb")
+  name      String   @unique @default("PHANUN SUON")
+  city      String   @default("Siem Reap")
+  amount    Decimal? @default(0.00) @db.Decimal(12, 2)
+  currency  String?  @default("usd")
+  token     String   @unique @default("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNDdjMGY2MzY4ZTFmNGFjYSJ9LCJpYXQiOjE3NDgxNDA0MzgsImV4cCI6MTc1NTkxNjQzOH0.CSNbF2clfRi2f8ROhyOGF8Nxyz5lqet0Nb1iWEvwaDU")
+  status    Status   @default(active)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model LeaveRequest {
-  leaveId       String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  employeeId    String     @db.Uuid
-  leaveType     LeaveType
-  startDate     DateTime
-  endDate       DateTime
-  reason        String?
-  status        LeaveStatus @default(pending)
-  approvedById  String?    @db.Uuid
-  approvedAt    DateTime?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  
-  employee      Employee   @relation("Requester", fields: [employeeId], references: [employeeId])
-  approvedBy    Employee?  @relation("Approver", fields: [approvedById], references: [employeeId])
+  leaveId      String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  employeeId   String      @db.Uuid
+  leaveType    LeaveType
+  startDate    DateTime
+  endDate      DateTime
+  reason       String?
+  status       LeaveStatus @default(pending)
+  approvedById String?     @db.Uuid
+  approvedAt   DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  approvedBy   Employee?   @relation("Approver", fields: [approvedById], references: [employeeId])
+  employee     Employee    @relation("Requester", fields: [employeeId], references: [employeeId])
 
   @@index([employeeId])
   @@index([status])
@@ -278,13 +311,15 @@ model Notification {
   updatedAt      DateTime @updatedAt
   auth           Auth?    @relation(fields: [authId], references: [authId])
   user           User?    @relation(fields: [userId], references: [userId])
+
+  @@index([authId])
+  @@index([userId])
 }
 
 model Payment {
   paymentId     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId    String   @db.Uuid
   saleId        String   @db.Uuid
-  reservationId String   @db.Uuid
   invoice       String?
   hash          String
   fromAccountId String
@@ -297,6 +332,11 @@ model Payment {
   updatedAt     DateTime @updatedAt
   employee      Employee @relation(fields: [employeeId], references: [employeeId])
   sale          Sale     @relation(fields: [saleId], references: [saleId])
+
+  @@index([employeeId])
+  @@index([saleId])
+  @@index([fromAccountId])
+  @@index([toAccountId])
 }
 
 model Position {
@@ -310,6 +350,8 @@ model Position {
   updatedAt    DateTime   @updatedAt
   employees    Employee[]
   department   Department @relation(fields: [departmentId], references: [departmentId])
+
+  @@index([departmentId])
 }
 
 model Product {
@@ -332,6 +374,8 @@ model Product {
   saledetails  Saledetail[]
   stocks       Stock?
   entry        Stockentry[]
+
+  @@index([categoryId])
 }
 
 model Stock {
@@ -345,6 +389,7 @@ model Stock {
   product   Product  @relation(fields: [productId], references: [productId])
 
   @@index([productId])
+  @@index([createdAt])
 }
 
 model Stockentry {
@@ -435,6 +480,23 @@ model Supplier {
   entry        Stockentry[]
 }
 
+model System {
+  systemId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  systemName  String   @unique  @db.VarChar(50)  @default("Nun System")
+  systemType  String   @default("default")   @db.VarChar(20)
+  ownerName   String?  @db.VarChar(100)
+  ownerEmail  String?  @db.VarChar(100)
+  ownerPhone  String?  @db.VarChar(20)
+  apiKey      String   @unique    @db.VarChar(255)
+  apiSecret   String   @unique    @db.VarChar(255)  
+  apiUrl      String   @unique    @db.VarChar(255)
+  apiVersion  String   @default("v1")   @db.VarChar(10)
+  description String?
+  status      Status   @default(active)  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model Token {
   tokenId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId     String?  @db.Uuid
@@ -501,6 +563,12 @@ enum Status {
 enum StockType {
   in
   out
+}
+
+enum SystemType {
+  default
+  pos
+  reserve
 }
 
 enum LeaveType {

@@ -8,9 +8,11 @@ const {
   patch,
   destroy,
   refresh,
+  qrgenerator,
 } = require("@/controllers/attendance-controller");
 
 router.get("/re", refresh);
+router.get("/gen", qrgenerator);
 router.get("/:id?", select);
 router.post("/", create);
 router.put("/:id", update);
