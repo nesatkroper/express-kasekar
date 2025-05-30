@@ -79,12 +79,12 @@ model Auth {
 model AuthLog {
   id           Int      @id @default(autoincrement())
   authId       String   @db.Uuid
-  method       String   @db.VarChar(100)
-  url          String   @db.VarChar(255)
+  method       String   @db.VarChar(200)
+  url          String   @db.Text
   status       Int
   responseTime Float
-  ip           String   @db.VarChar(100)
-  userAgent    String?  @db.VarChar(100)
+  ip           String   @db.VarChar(200)
+  userAgent    String?  @db.VarChar(200)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   auth         Auth     @relation(fields: [authId], references: [authId])
@@ -223,8 +223,8 @@ model Employee {
 model Employeeinfo {
   employeeId String    @unique @db.Uuid
   picture    String?   @db.VarChar(255)
-  region     String?   @db.VarChar(100)
-  email      String?   @unique    @db.VarChar(100)
+  region     String?   @db.VarChar(200)
+  email      String?   @unique    @db.VarChar(200)
   note       String?   @db.Text
   status     Status    @default(active)
   govExpire  DateTime?
@@ -235,7 +235,7 @@ model Employeeinfo {
 
 model Event {
   eventId    String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  eventName  String       @db.VarChar(100)
+  eventName  String       @db.VarChar(200)
   memo       String?      @db.Text
   startDate  DateTime
   endDate    DateTime
@@ -293,11 +293,11 @@ model LeaveRequest {
 model Log {
   id           Int      @id @default(autoincrement())
   method       String   @db.VarChar(50)
-  url          String   @db.VarChar(255)
+  url          String   @db.Text
   status       Int
   responseTime Float
-  ip           String   @db.VarChar(100)
-  userAgent    String?  @db.VarChar(255)
+  ip           String   @db.VarChar(200)
+  userAgent    String?  @db.Text
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -306,8 +306,8 @@ model Notification {
   notificationId String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId         String?  @db.Uuid
   userId         String?  @db.Uuid
-  title          String   @db.VarChar(100)
-  content        String   @db.VarChar(100)
+  title          String   @db.VarChar(200)
+  content        String   @db.VarChar(200)
   status         Status   @default(active)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -323,7 +323,7 @@ model Payment {
   employeeId    String   @db.Uuid
   saleId        String   @db.Uuid
   invoice       String?  @db.VarChar(255)
-  hash          String   @db.VarChar(100)
+  hash          String   @db.VarChar(200)
   fromAccountId String   @db.VarChar(50)
   toAccountId   String   @db.VarChar(50)
   currency      String   @db.VarChar(10)
@@ -488,12 +488,12 @@ model System {
   systemId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   systemName  String   @unique @default("Nun System") @db.VarChar(50)
   systemType  String   @default("default") @db.VarChar(50)
-  ownerName   String?  @db.VarChar(100)
-  ownerEmail  String?  @db.VarChar(100)
+  ownerName   String?  @db.VarChar(200)
+  ownerEmail  String?  @db.VarChar(200)
   ownerPhone  String?  @db.VarChar(20)
-  apiKey      String   @unique @db.VarChar(255)
-  apiSecret   String   @unique @db.VarChar(255)
-  apiUrl      String   @unique @db.VarChar(255)
+  apiKey      String   @unique @db.Text
+  apiSecret   String   @unique @db.Text
+  apiUrl      String   @unique @db.Text
   apiVersion  String   @default("v1") @db.VarChar(10)
   description String?
   status      Status   @default(active)
@@ -506,8 +506,8 @@ model Token {
   authId     String?  @db.Uuid
   userId     String?  @db.Uuid
   token      String   @unique
-  deviceInfo String   @default("")    @db.VarChar(100)
-  ipAddress  String   @default("")    @db.VarChar(100)
+  deviceInfo String   @default("")    @db.VarChar(200)
+  ipAddress  String   @default("")    @db.VarChar(200)
   expiresAt  DateTime
   createdAt  DateTime @default(now())
   auth       Auth?    @relation(fields: [authId], references: [authId])
