@@ -11,7 +11,7 @@ datasource db {
 
 model Address {
   addressId  String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  cityId     Int?
+  cityId     Int?           
   stateId    Int?
   latitude   Float?
   longitude  Float?
@@ -27,6 +27,7 @@ model Address {
   event      Event?         @relation(fields: [eventId], references: [eventId])
   state      State?         @relation(fields: [stateId], references: [stateId])
   image      Imageaddress[]
+  supplier   Supplier[]
 
   @@index([cityId])
   @@index([stateId])
@@ -35,17 +36,17 @@ model Address {
   @@index([eventId])
 }
 
-model Attendance { 
+model Attendance {
   attendanceId String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId   String    @db.Uuid
+  eventId      String    @db.Uuid
   datetime     DateTime  @default(now())
-  note         String?
+  method       ScanMethod?  @default(phone)
   status       Status    @default(active)
   checkIn      DateTime  @default(now())
   checkOut     DateTime?
+  note         String?   @db.Text
   createdAt    DateTime  @default(now())
-  eventId      String    @db.Uuid
-  method       String?
   employee     Employee  @relation(fields: [employeeId], references: [employeeId])
   event        Event     @relation(fields: [eventId], references: [eventId])
 
@@ -55,7 +56,7 @@ model Attendance {
 
 model Auth {
   authId       String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email        String         @unique @db.VarChar(255)
+  email        String         @unique @db.VarChar(50)
   password     String         @db.VarChar(255)
   roleId       String         @db.Uuid
   employeeId   String?        @unique @db.Uuid
@@ -63,12 +64,12 @@ model Auth {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   lastLoginAt  DateTime?
-  employee     Employee?      @relation(fields: [employeeId], references: [employeeId])
-  role         Role           @relation(fields: [roleId], references: [roleId])
-  logs         AuthLog[]
   cart         Cart[]
-  notification Notification[]
   token        Token[]
+  logs         AuthLog[]
+  notification Notification[]
+  role         Role           @relation(fields: [roleId], references: [roleId])
+  employee     Employee?      @relation(fields: [employeeId], references: [employeeId])
 
   @@index([email])
   @@index([status])
@@ -78,12 +79,12 @@ model Auth {
 model AuthLog {
   id           Int      @id @default(autoincrement())
   authId       String   @db.Uuid
-  method       String
-  url          String
+  method       String   @db.VarChar(200)
+  url          String   @db.Text
   status       Int
   responseTime Float
-  ip           String
-  userAgent    String?
+  ip           String   @db.VarChar(200)
+  userAgent    String?  @db.VarChar(200)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   auth         Auth     @relation(fields: [authId], references: [authId])
@@ -106,12 +107,15 @@ model Cart {
   note      Cartnote[]
 
   @@unique([authId, productId], name: "authId_productId")
+  @@index([authId])
+  @@index([userId])
+  @@index([productId])
 }
 
 model Cartnote {
   cartnoteId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   cartId     String @db.Uuid
-  note       String
+  note       String @db.Text
   status     Status @default(active)
   cart       Cart   @relation(fields: [cartId], references: [cartId])
 
@@ -120,10 +124,10 @@ model Cartnote {
 
 model Category {
   categoryId   String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  picture      String?
-  categoryName String
-  categoryCode String?
-  memo         String?
+  picture      String?   @db.VarChar(255)
+  categoryName String    @db.VarChar(20)
+  categoryCode String?   @db.VarChar(20)
+  memo         String?   @db.Text
   status       Status    @default(active)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -133,7 +137,7 @@ model Category {
 model City {
   cityId    Int       @id @default(autoincrement())
   stateId   Int
-  name      String
+  name      String    @db.Text
   addresses Address[]
   state     State     @relation(fields: [stateId], references: [stateId])
 
@@ -142,12 +146,12 @@ model City {
 
 model Customer {
   customerId String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  firstName  String
-  lastName   String
-  gender     Gender        @default(male)
-  phone      String?
-  status     Status        @default(active)
   employeeId String?       @db.Uuid
+  firstName  String        @db.VarChar(20)
+  lastName   String        @db.VarChar(20)
+  gender     Gender        @default(male)
+  phone      String?       @db.VarChar(20)
+  status     Status        @default(active)
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
   address    Address?
@@ -161,12 +165,12 @@ model Customer {
 
 model Customerinfo {
   customerId String    @unique @db.Uuid
-  picture    String?
-  region     String?
+  picture    String?   @db.VarChar(255)
+  region     String?   @db.VarChar(50)
   email      String?   @unique
-  note       String?
-  govId      String?
-  govPicture String?
+  note       String?   @db.Text
+  govId      String?   @db.VarChar(20)
+  govPicture String?   @db.VarChar(255)
   govExpire  DateTime?
   status     Status    @default(active)
   customer   Customer  @relation(fields: [customerId], references: [customerId])
@@ -174,9 +178,9 @@ model Customerinfo {
 
 model Department {
   departmentId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  departmentName String
-  departmentCode String?
-  memo           String?
+  departmentName String     @db.VarChar(50)
+  departmentCode String?    @db.VarChar(20)
+  memo           String?    @db.Text
   status         Status     @default(active)
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
@@ -186,12 +190,12 @@ model Department {
 
 model Employee {
   employeeId     String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  employeeCode   String?        @unique
-  firstName      String
-  lastName       String
+  employeeCode   String?        @unique   @db.VarChar(20)
+  firstName      String         @db.VarChar(20)
+  lastName       String         @db.VarChar(20)
   gender         Gender         @default(male)
   dob            DateTime?
-  phone          String?        @unique
+  phone          String?        @unique   @db.VarChar(20)
   positionId     String         @db.Uuid
   departmentId   String         @db.Uuid
   salary         Decimal        @db.Decimal(10, 2)
@@ -214,26 +218,25 @@ model Employee {
   @@index([employeeCode])
   @@index([departmentId])
   @@index([positionId])
-
 }
 
 model Employeeinfo {
   employeeId String    @unique @db.Uuid
-  picture    String?
-  region     String?
-  email      String?   @unique
-  note       String?
+  picture    String?   @db.VarChar(255)
+  region     String?   @db.VarChar(200)
+  email      String?   @unique    @db.VarChar(200)
+  note       String?   @db.Text
   status     Status    @default(active)
   govExpire  DateTime?
-  govId      String?
-  govPicture String?
+  govId      String?   @db.VarChar(20)
+  govPicture String?   @db.VarChar(255)
   employee   Employee  @relation(fields: [employeeId], references: [employeeId])
 }
 
 model Event {
   eventId    String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  eventName  String
-  memo       String?
+  eventName  String       @db.VarChar(200)
+  memo       String?      @db.Text
   startDate  DateTime
   endDate    DateTime
   status     Status       @default(active)
@@ -245,8 +248,7 @@ model Event {
 
 model Imageaddress {
   imageId   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  imageUrl  String
-  imageType String?
+  imageUrl  String   @db.VarChar(255)
   addressId String   @db.Uuid
   status    Status   @default(active)
   createdAt DateTime @default(now())
@@ -258,11 +260,11 @@ model Imageaddress {
 
 model Khqr {
   khqrId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  account   String   @unique @default("suon_phanun@aclb")
-  name      String   @unique @default("PHANUN SUON")
-  city      String   @default("Siem Reap")
+  account   String   @unique @default("suon_phanun@aclb")   @db.VarChar(50)
+  name      String   @unique @default("PHANUN SUON")        @db.VarChar(50)
+  city      String   @default("Siem Reap")                  @db.VarChar(50)
   amount    Decimal? @default(0.00) @db.Decimal(12, 2)
-  currency  String?  @default("usd")
+  currency  String?  @default("usd")                        @db.VarChar(10)
   token     String   @unique @default("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNDdjMGY2MzY4ZTFmNGFjYSJ9LCJpYXQiOjE3NDgxNDA0MzgsImV4cCI6MTc1NTkxNjQzOH0.CSNbF2clfRi2f8ROhyOGF8Nxyz5lqet0Nb1iWEvwaDU")
   status    Status   @default(active)
   createdAt DateTime @default(now())
@@ -275,7 +277,7 @@ model LeaveRequest {
   leaveType    LeaveType
   startDate    DateTime
   endDate      DateTime
-  reason       String?
+  reason       String?     @db.Text
   status       LeaveStatus @default(pending)
   approvedById String?     @db.Uuid
   approvedAt   DateTime?
@@ -290,12 +292,12 @@ model LeaveRequest {
 
 model Log {
   id           Int      @id @default(autoincrement())
-  method       String
-  url          String
+  method       String   @db.VarChar(50)
+  url          String   @db.Text
   status       Int
   responseTime Float
-  ip           String
-  userAgent    String?
+  ip           String   @db.VarChar(200)
+  userAgent    String?  @db.Text
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -304,8 +306,8 @@ model Notification {
   notificationId String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   authId         String?  @db.Uuid
   userId         String?  @db.Uuid
-  title          String
-  content        String
+  title          String   @db.VarChar(200)
+  content        String   @db.VarChar(200)
   status         Status   @default(active)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -320,13 +322,13 @@ model Payment {
   paymentId     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   employeeId    String   @db.Uuid
   saleId        String   @db.Uuid
-  invoice       String?
-  hash          String
-  fromAccountId String
-  toAccountId   String
-  currency      String
+  invoice       String?  @db.VarChar(255)
+  hash          String   @db.VarChar(200)
+  fromAccountId String   @db.VarChar(50)
+  toAccountId   String   @db.VarChar(50)
+  currency      String   @db.VarChar(10)
   amount        Decimal  @db.Decimal(12, 2)
-  externalRef   String
+  externalRef   String   @db.VarChar(50)
   status        Status   @default(active)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -342,9 +344,9 @@ model Payment {
 model Position {
   positionId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   departmentId String     @db.Uuid
-  positionName String?
-  positionCode String?
-  memo         String?
+  positionName String?    @db.VarChar(50)
+  positionCode String?    @db.VarChar(20)
+  memo         String?    @db.Text
   status       Status     @default(active)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
@@ -356,17 +358,17 @@ model Position {
 
 model Product {
   productId    String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  productName  String
-  productCode  String?
+  productName  String       @db.VarChar(50)
+  productCode  String?      @db.VarChar(20)
   categoryId   String       @db.Uuid
-  picture      String?
-  unit         String?
-  capacity     String?
+  picture      String?      @db.VarChar(255)
+  unit         String?      @db.VarChar(10)
+  capacity     String?      @db.VarChar(20)
   sellPrice    Decimal      @default(0.00) @db.Decimal(10, 2)
   costPrice    Decimal      @default(0.00) @db.Decimal(10, 2)
   discountRate Int          @default(0)
   status       Status       @default(active)
-  desc         String?
+  desc         String?      @db.Text
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   cart         Cart[]
@@ -381,7 +383,7 @@ model Product {
 model Stock {
   stockId   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   productId String   @unique @db.Uuid
-  memo      String?
+  memo      String?  @db.Text
   status    Status   @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -395,7 +397,7 @@ model Stock {
 model Stockentry {
   entryId    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   quantity   Int       @default(0)
-  memo       String?
+  memo       String?   @db.Text
   status     Status    @default(active)
   entryPrice Decimal   @default(0.00) @db.Decimal(12, 2)
   entryDate  DateTime?
@@ -403,7 +405,7 @@ model Stockentry {
   updatedAt  DateTime  @updatedAt
   productId  String    @db.Uuid
   supplierId String    @db.Uuid
-  invoice    String?
+  invoice    String?   @db.VarChar(255)
   product    Product   @relation(fields: [productId], references: [productId])
   supplier   Supplier  @relation(fields: [supplierId], references: [supplierId])
 
@@ -413,8 +415,8 @@ model Stockentry {
 
 model Role {
   roleId       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name         String   @unique
-  description  String?
+  name         String   @unique   @db.VarChar(20)
+  description  String?  @db.Text
   status       Status   @default(active)
   isSystemRole Boolean  @default(false)
   createdAt    DateTime @default(now())
@@ -432,8 +434,8 @@ model Sale {
   status      Status       @default(active)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  memo        String?
-  invoice     String?
+  memo        String?      @db.Text
+  invoice     String?      @db.VarChar(255)
   payment     Payment[]
   customer    Customer     @relation(fields: [customerId], references: [customerId])
   employee    Employee     @relation(fields: [employeeId], references: [employeeId])
@@ -452,7 +454,7 @@ model Saledetail {
   status       Status   @default(active)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  memo         String?
+  memo         String?  @db.Text
   product      Product  @relation(fields: [productId], references: [productId])
   sale         Sale     @relation(fields: [saleId], references: [saleId])
 
@@ -462,37 +464,39 @@ model Saledetail {
 
 model State {
   stateId   Int       @id @default(autoincrement())
-  name      String    @unique
+  name      String    @unique   @db.VarChar(50)
   addresses Address[]
   cities    City[]
 }
 
 model Supplier {
   supplierId   String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  supplierName String
-  companyName  String?
-  phone        String?
-  email        String?
-  address      String?
+  supplierName String       @db.VarChar(50)
+  companyName  String?      @db.VarChar(50)
+  phone        String?      @db.VarChar(20)
+  email        String?      @db.VarChar(50)
+  addressId    String?      @db.Uuid
+  memo         String?      
   status       Status       @default(active)
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
+  address      Address?     @relation(fields: [addressId], references: [addressId])
   entry        Stockentry[]
 }
 
 model System {
   systemId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  systemName  String   @unique  @db.VarChar(50)  @default("Nun System")
-  systemType  String   @default("default")   @db.VarChar(20)
-  ownerName   String?  @db.VarChar(100)
-  ownerEmail  String?  @db.VarChar(100)
+  systemName  String   @unique @default("Nun System") @db.VarChar(50)
+  systemType  String   @default("default") @db.VarChar(50)
+  ownerName   String?  @db.VarChar(200)
+  ownerEmail  String?  @db.VarChar(200)
   ownerPhone  String?  @db.VarChar(20)
-  apiKey      String   @unique    @db.VarChar(255)
-  apiSecret   String   @unique    @db.VarChar(255)  
-  apiUrl      String   @unique    @db.VarChar(255)
-  apiVersion  String   @default("v1")   @db.VarChar(10)
+  apiKey      String   @unique @db.Text
+  apiSecret   String   @unique @db.Text
+  apiUrl      String   @unique @db.Text
+  apiVersion  String   @default("v1") @db.VarChar(10)
   description String?
-  status      Status   @default(active)  
+  status      Status   @default(active)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -502,8 +506,8 @@ model Token {
   authId     String?  @db.Uuid
   userId     String?  @db.Uuid
   token      String   @unique
-  deviceInfo String   @default("")
-  ipAddress  String   @default("")
+  deviceInfo String   @default("")    @db.VarChar(200)
+  ipAddress  String   @default("")    @db.VarChar(200)
   expiresAt  DateTime
   createdAt  DateTime @default(now())
   auth       Auth?    @relation(fields: [authId], references: [authId])
@@ -591,4 +595,9 @@ enum CheckStatus {
   checkin
   checkout
   absent
+}
+
+enum ScanMethod {
+  phone
+  biometric
 }
