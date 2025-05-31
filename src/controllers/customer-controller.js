@@ -43,6 +43,7 @@ const select = async (req, res) => {
 };
 
 const clientSelect = async (req, res) => {
+  if (!req.params.id) return res.status(203).json({ msg: "You are Admin." });
   try {
     const cacheKey = generateCacheKey(model, { id: req.params.id });
     const cachedData = await getCached(cacheKey);
