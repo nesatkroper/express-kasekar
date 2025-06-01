@@ -1,9 +1,7 @@
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
   "http://74.50.67.162",
-  "http://74.50.67.162:3100",
-  "http://74.50.67.162:4100",
+  "http://localhost:5173",
+  "https://huotsopheaksakana.site"
 ];
 
 const allowedHeaders = [
